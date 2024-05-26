@@ -23,7 +23,6 @@
 
 [Sources]
   ShellDynListProtocols.c
-  ShellDynListProtocols.uni
 
 [Packages]
   MdePkg/MdePkg.dec
