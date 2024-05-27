@@ -65,7 +65,7 @@ EFIDynCmdProtocolLpHandler()
     UINTN ProtocolIndex;
 
     // 1st get list of all handles
-    Status = pBS->LocateHandleBuffer(
+    Status = gBS->LocateHandleBuffer(
         AllHandles,
         NULL,
         NULL,
@@ -80,14 +80,14 @@ EFIDynCmdProtocolLpHandler()
     // 2nd interate handles and get+print all protocols
     for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
     {
-        Status = pBS->ProtocolsPerHandle(
+        Status = gBS->ProtocolsPerHandle(
             pHandleBuffer[HandleIndex],
             &pProtocolBuffer,
             &ProtocolCount);
         if (EFI_ERROR(Status))
         {
             DEBUG((EFI_D_ERROR, "ProtocolsPerHandle failed on handle #%d = 0x%x: %r\n", HandleIndex, pHandleBuffer[HandleIndex], Status));
-            pBS->FreePool(pHandleBuffer);
+            gBS->FreePool(pHandleBuffer);
             return EFI_ABORTED;
         }
 
@@ -99,10 +99,10 @@ EFIDynCmdProtocolLpHandler()
                 Print(L"                     %g\n", pProtocolBuffer[ProtocolIndex]);
         }
 
-        pBS->FreePool(pProtocolBuffer);
+        gBS->FreePool(pProtocolBuffer);
     }
 
-    pBS->FreePool(pHandleBuffer);
+    gBS->FreePool(pHandleBuffer);
 
     return EFI_SUCCESS;
 }
