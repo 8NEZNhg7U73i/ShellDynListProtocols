@@ -12,7 +12,7 @@
 
 **/
 
-#include "EFIDynListProtocols.h"
+#include "ShellDynListProtocols.h"
 
 /**
   GUID definitions
