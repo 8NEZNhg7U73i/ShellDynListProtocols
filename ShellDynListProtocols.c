@@ -47,6 +47,12 @@ EFIDynListProtocolsEntryPoint (
     EFI_STATUS  Status;
     EFI_HANDLE  Handle;
 
+    Handle = NULL;
+    Status = EFIDynCmdProtocolLpHandler();
+    if (!Status==0)
+    {
+        return EFI_ABORDED;
+    }
     return EFI_SUCCESS;
 }
 
