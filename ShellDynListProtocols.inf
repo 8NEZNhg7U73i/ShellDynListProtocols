@@ -29,7 +29,7 @@
   ShellPkg/ShellPkg.dec
 
 [LibraryClasses]
-  UefiDriverEntryPoint
+  UefiApplicationEntryPoint
   UefiLib # Print()
   HiiLib 
   DebugLib
