@@ -17,7 +17,7 @@
 
 #include <Uefi.h>
 
-#include <Protocol/EFIDynamicCommand.h>
+#include <Protocol/ShellDynamicCommand.h>
 
 #include <Library/UefiLib.h> // Print()
 #include <Library/HiiLib.h>
