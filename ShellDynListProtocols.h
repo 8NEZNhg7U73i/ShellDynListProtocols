@@ -17,7 +17,7 @@
 
 #include <Uefi.h>
 
-#include <Protocol/ShellDynamicCommand.h>
+#include <Protocol/EFIDynamicCommand.h>
 
 #include <Library/UefiLib.h> // Print()
 #include <Library/HiiLib.h>
@@ -38,7 +38,7 @@ the command when it is invoked in the shell.
 **/
 SHELL_STATUS
 EFIAPI
-ShellDynCmdProtocolLpHandler(
+EFIDynCmdProtocolLpHandler(
     IN EFI_SHELL_DYNAMIC_COMMAND_PROTOCOL  *This,
     IN EFI_SYSTEM_TABLE                    *SystemTable,
     IN EFI_SHELL_PARAMETERS_PROTOCOL       *ShellParameters,
@@ -58,7 +58,7 @@ UEFI Shell Specification.
 **/
 CHAR16*
 EFIAPI
-ShellDynCmdProtocolLpGetHelp(
+EFIDynCmdProtocolLpGetHelp(
     IN EFI_SHELL_DYNAMIC_COMMAND_PROTOCOL  *This,
     IN CONST CHAR8                         *Language
     );
