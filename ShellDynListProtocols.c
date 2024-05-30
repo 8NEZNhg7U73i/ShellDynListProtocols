@@ -80,8 +80,8 @@ EFIDynCmdProtocolLpHandler()
                 ERR_PRINT(L"No path found\n");
             }
             StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
-            OUT_PRINT(StrPath);
-            MemFree(StrPath);
+            Print(L"%s\n", StrPath);
+            //MemFree(StrPath);
         }
 
         gBS->FreePool(pProtocolBuffer);
