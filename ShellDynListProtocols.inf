@@ -34,6 +34,8 @@
   HiiLib 
   DebugLib
   PrintLib
-
+  DevicePathLib
+  
 [Protocols]
   gEfiShellDynamicCommandProtocolGuid
+  gEfiDevicePathProtocolGuid                    
