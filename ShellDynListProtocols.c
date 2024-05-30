@@ -37,6 +37,8 @@ EFIDynCmdProtocolLpHandler()
     UINTN ProtocolCount;
     EFI_GUID ** pProtocolBuffer;
     UINTN ProtocolIndex;
+    EFI_DEVICE_PATH *DevicePath;
+    CHAR16 *StrPath;
 
     // 1st get list of all handles
     Status = gBS->LocateHandleBuffer(
@@ -71,6 +73,14 @@ EFIDynCmdProtocolLpHandler()
                 Print(L"Handle 0x%08X:   %g\n", pHandleBuffer[HandleIndex], pProtocolBuffer[ProtocolIndex]);
             else
                 Print(L"                     %g\n", pProtocolBuffer[ProtocolIndex]);
+            DevicePath = DevicePathFromHandle(pHandleBuffer[HandleIndex]);
+            if (DevicePath == NULL)
+            {
+                ERR_PRINT(L"No path found\n");
+            }
+            StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
+            OUT_PRINT(StrPath);
+            Memfree(StrPath);
         }
 
         gBS->FreePool(pProtocolBuffer);
