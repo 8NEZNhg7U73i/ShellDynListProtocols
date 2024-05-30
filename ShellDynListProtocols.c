@@ -23,40 +23,9 @@ STATIC CONST EFI_GUID mEFIDynListProtocolsHiiGuid = { 0X4AC75E15, 0X5DF5, 0X4F57
 
 STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
-/**
-  Main entry point of the dynamic EFI extension driver.
 
-  @param[in]  ImageHandle   The firmware allocated handle for the present driver UEFI image.
-  @param[in]  *SystemTable  A pointer to the EFI System table.
-
-  @retval  EFI_SUCCESS           The driver was initialized.
-  @retval  EFI_OUT_OF_RESOURCES  The "End of DXE" event could not be allocated or
-                                 there was not enough memory in pool to install
-                                 the EFI Dynamic Command protocol.
-  @retval  EFI_LOAD_ERROR        Unable to add the HII package.
-
-**/
 EFI_STATUS
 EFIAPI
-EFIDynListProtocolsEntryPoint (
-  IN EFI_HANDLE        ImageHandle,
-  IN EFI_SYSTEM_TABLE  *SystemTable
-  )
-{
-    //EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
-    EFI_STATUS  Status;
-    EFI_HANDLE  Handle;
-
-    Handle = NULL;
-    Status = EFIDynCmdProtocolLpHandler();
-    if (!Status==0)
-    {
-        return EFI_LOAD_ERROR;
-    }
-    return EFI_SUCCESS;
-}
-
-
 EFIDynCmdProtocolLpHandler()
 {
     EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
@@ -108,5 +77,39 @@ EFIDynCmdProtocolLpHandler()
 
     gBS->FreePool(pHandleBuffer);
 
+    return EFI_SUCCESS;
+}
+
+
+/**
+  Main entry point of the dynamic EFI extension driver.
+
+  @param[in]  ImageHandle   The firmware allocated handle for the present driver UEFI image.
+  @param[in]  *SystemTable  A pointer to the EFI System table.
+
+  @retval  EFI_SUCCESS           The driver was initialized.
+  @retval  EFI_OUT_OF_RESOURCES  The "End of DXE" event could not be allocated or
+                                 there was not enough memory in pool to install
+                                 the EFI Dynamic Command protocol.
+  @retval  EFI_LOAD_ERROR        Unable to add the HII package.
+
+**/
+EFI_STATUS
+EFIAPI
+EFIDynListProtocolsEntryPoint (
+  IN EFI_HANDLE        ImageHandle,
+  IN EFI_SYSTEM_TABLE  *SystemTable
+  )
+{
+    //EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
+    EFI_STATUS  Status;
+    EFI_HANDLE  Handle;
+
+    Handle = NULL;
+    Status = EFIDynCmdProtocolLpHandler();
+    if (!Status==0)
+    {
+        return EFI_LOAD_ERROR;
+    }
     return EFI_SUCCESS;
 }
