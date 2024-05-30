@@ -75,7 +75,7 @@ EFIDynCmdProtocolLpHandler()
             else
                 Print(L"                     %g\n", pProtocolBuffer[ProtocolIndex]);
             DevicePath = DevicePathFromHandle(pHandleBuffer[HandleIndex]);
-            if (!DevicePath == NULL)
+            if (!(DevicePath == NULL))
             {
                 StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
                 Print(L"%s\n", StrPath);
