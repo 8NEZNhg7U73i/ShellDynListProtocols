@@ -74,14 +74,14 @@ EFIDynCmdProtocolLpHandler()
                 Print(L"Handle 0x%08X:   %g\n", pHandleBuffer[HandleIndex], pProtocolBuffer[ProtocolIndex]);
             else
                 Print(L"                     %g\n", pProtocolBuffer[ProtocolIndex]);
-            DevicePath = DevicePathFromHandle(pHandleBuffer[HandleIndex]);
-            if (!(DevicePath == NULL))
-            {
-                StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
-                Print(L"%s\n", StrPath);
-            }
-            //MemFree(StrPath);
         }
+        DevicePath = DevicePathFromHandle(pHandleBuffer[HandleIndex]);
+        if (!(DevicePath == NULL))
+        {
+            StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
+            Print(L"%s\n", StrPath);
+        }
+        // MemFree(StrPath);
 
         gBS->FreePool(pProtocolBuffer);
     }
