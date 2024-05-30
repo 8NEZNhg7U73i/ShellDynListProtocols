@@ -38,12 +38,7 @@ the command when it is invoked in the shell.
 **/
 SHELL_STATUS
 EFIAPI
-EFIDynCmdProtocolLpHandler(
-    IN EFI_SHELL_DYNAMIC_COMMAND_PROTOCOL  *This,
-    IN EFI_SYSTEM_TABLE                    *SystemTable,
-    IN EFI_SHELL_PARAMETERS_PROTOCOL       *ShellParameters,
-    IN EFI_SHELL_PROTOCOL                  *Shell
-    );
+EFIDynCmdProtocolLpHandler();
 
 /**
 This is the shell command "lp" help handler function. This
