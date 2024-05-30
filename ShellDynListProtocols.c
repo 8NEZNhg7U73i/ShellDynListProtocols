@@ -43,7 +43,7 @@ EFIDynListProtocolsEntryPoint (
   IN EFI_SYSTEM_TABLE  *SystemTable
   )
 {
-    EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
+    //EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
     EFI_STATUS  Status;
     EFI_HANDLE  Handle;
 
