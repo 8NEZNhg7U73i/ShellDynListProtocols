@@ -33,6 +33,7 @@
   UefiLib # Print()
   HiiLib 
   DebugLib
+  PrintLib
 
 [Protocols]
   gEfiShellDynamicCommandProtocolGuid
