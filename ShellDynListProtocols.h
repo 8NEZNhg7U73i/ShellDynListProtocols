@@ -36,9 +36,6 @@ the command when it is invoked in the shell.
 @return  SHELL_ABORTED            Operation aborted due to internal error.
 
 **/
-SHELL_STATUS
-EFIAPI
-EFIDynCmdProtocolLpHandler();
 
 /**
 This is the shell command "lp" help handler function. This
