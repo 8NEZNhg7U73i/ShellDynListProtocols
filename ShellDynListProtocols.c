@@ -11,7 +11,7 @@
   WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 
 **/
-
+#include <Library/DevicePathLib.h>
 #include "ShellDynListProtocols.h"
 
 /**
