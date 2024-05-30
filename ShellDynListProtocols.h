@@ -57,7 +57,7 @@ EFIDynCmdProtocolLpGetHelp(
     );
 */
 
-//extern EFI_BOOT_SERVICES *gBS;
-//extern EFI_SYSTEM_TABLE *gST;
+extern EFI_BOOT_SERVICES *gBS;
+extern EFI_SYSTEM_TABLE *gST;
 
 #endif /* __SHELL_DYN_LIST_PROTOCOLS_H__ */
