@@ -56,8 +56,7 @@ EFIDynListProtocolsEntryPoint (
     return EFI_SUCCESS;
 }
 
-EFI_STATUS
-EFIAPI
+
 EFIDynCmdProtocolLpHandler()
 {
     EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
