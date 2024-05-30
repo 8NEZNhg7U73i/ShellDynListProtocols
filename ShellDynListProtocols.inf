@@ -35,7 +35,8 @@
   DebugLib
   PrintLib
   DevicePathLib
-  
+  MemoryAllocationLib
+
 [Protocols]
   gEfiShellDynamicCommandProtocolGuid
-  gEfiDevicePathProtocolGuid                    
+  gEfiDevicePathProtocolGuid
