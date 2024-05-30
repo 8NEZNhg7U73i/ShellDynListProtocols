@@ -28,8 +28,8 @@ EFI_STATUS
 EFIAPI
 EFIDynCmdProtocolLpHandler()
 {
-    EFI_SYSTEM_TABLE  *SystemTable;
-    EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
+    //EFI_SYSTEM_TABLE  *SystemTable;
+    //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
     EFI_STATUS Status;
     UINTN HandleCount;
     EFI_HANDLE * pHandleBuffer;
