@@ -18,7 +18,7 @@
   FILE_GUID       = DE79E94F-BF6E-4081-9EAA-9DD3228DCE5B
   MODULE_TYPE     = UEFI_APPLICATION
   VERSION_STRING  = 1.1
-  ENTRY_POINT     = ShellDynListProtocolsEntryPoint
+  ENTRY_POINT     = EFIDynListProtocolsEntryPoint
 
 [Sources]
   ShellDynListProtocols.c
