@@ -80,7 +80,7 @@ EFIDynCmdProtocolLpHandler()
             }
             StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
             OUT_PRINT(StrPath);
-            Memfree(StrPath);
+            MemFree(StrPath);
         }
 
         gBS->FreePool(pProtocolBuffer);
