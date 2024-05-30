@@ -75,12 +75,11 @@ EFIDynCmdProtocolLpHandler()
             else
                 Print(L"                     %g\n", pProtocolBuffer[ProtocolIndex]);
             DevicePath = DevicePathFromHandle(pHandleBuffer[HandleIndex]);
-            if (DevicePath == NULL)
+            if (!DevicePath == NULL)
             {
-                ERR_PRINT(L"No path found\n");
+                StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
+                Print(L"%s\n", StrPath);
             }
-            StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
-            Print(L"%s\n", StrPath);
             //MemFree(StrPath);
         }
 
