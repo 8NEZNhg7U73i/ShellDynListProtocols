@@ -13,6 +13,7 @@
 **/
 #include <Library/DevicePathLib.h>
 #include "ShellDynListProtocols.h"
+#include <Library/MemoryAllocationLib.h>
 
 /**
   GUID definitions
