@@ -99,6 +99,7 @@ EFIDynCmdProtocolLpHandler()
                 else
                     Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
             }
+            Print(L"\n\n");
         }
         MemFree(StrPath);
         gBS->FreePool(OpenInfo);
