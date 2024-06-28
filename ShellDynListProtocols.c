@@ -33,10 +33,10 @@ EFIDynCmdProtocolLpHandler()
     //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
     EFI_STATUS Status;
     UINTN HandleCount;
-    EFI_HANDLE * pHandleBuffer;
+    EFI_HANDLE * HandleBuffer;
     UINTN HandleIndex;
     UINTN ProtocolCount;
-    EFI_GUID ** pProtocolBuffer;
+    EFI_GUID ** ProtocolBuffer;
     UINTN ProtocolIndex;
     EFI_DEVICE_PATH *DevicePath;
     CHAR16 *StrPath;
@@ -47,7 +47,7 @@ EFIDynCmdProtocolLpHandler()
         NULL,
         NULL,
         &HandleCount,
-        &pHandleBuffer);
+        &HandleBuffer);
     if (EFI_ERROR(Status))
     {
         DEBUG((EFI_D_ERROR, "LocateHandleBuffer failed %r\n", Status));
@@ -58,13 +58,13 @@ EFIDynCmdProtocolLpHandler()
     for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
     {
         Status = gBS->ProtocolsPerHandle(
-            pHandleBuffer[HandleIndex],
-            &pProtocolBuffer,
+            HandleBuffer[HandleIndex],
+            &ProtocolBuffer,
             &ProtocolCount);
         if (EFI_ERROR(Status))
         {
-            DEBUG((EFI_D_ERROR, "ProtocolsPerHandle failed on handle #%d = 0x%x: %r\n", HandleIndex, pHandleBuffer[HandleIndex], Status));
-            gBS->FreePool(pHandleBuffer);
+            DEBUG((EFI_D_ERROR, "ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status));
+            gBS->FreePool(HandleBuffer);
             return EFI_ABORTED;
         }
 
@@ -75,7 +75,7 @@ EFIDynCmdProtocolLpHandler()
             else
                 Print(L"                     %g\n", pProtocolBuffer[ProtocolIndex]);
         }
-        DevicePath = DevicePathFromHandle(pHandleBuffer[HandleIndex]);
+        DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
         if (!(DevicePath == NULL))
         {
             StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
@@ -83,10 +83,10 @@ EFIDynCmdProtocolLpHandler()
         }
         // MemFree(StrPath);
 
-        gBS->FreePool(pProtocolBuffer);
+        gBS->FreePool(ProtocolBuffer);
     }
 
-    gBS->FreePool(pHandleBuffer);
+    gBS->FreePool(HandleBuffer);
 
     return EFI_SUCCESS;
 }
