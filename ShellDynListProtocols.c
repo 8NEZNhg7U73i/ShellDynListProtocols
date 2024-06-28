@@ -83,10 +83,14 @@ EFIDynCmdProtocolLpHandler()
             Status = gBS->OpenProtocolInformation(HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
             if (!EFI_ERROR(Status))
             {
+            if (0 == ProtocolIndex)
+                Print(L"Handle 0X%08X:   %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
+            else
+                Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
                 for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
                 {
-                    Print(L"%p is the handle\n", HandleBuffer[HandleIndex]);
-                    Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
+                    //Print(L"%p is the handle\n", HandleBuffer[HandleIndex]);
+                    //Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
                     Print(L"%p is the agent handle\n", OpenInfo[OpenInfoIndex].AgentHandle);
                     Print(L"%p is the controller handle\n", OpenInfo[OpenInfoIndex].ControllerHandle);
                     Print(L"%d is the attributes\n", OpenInfo[OpenInfoIndex].Attributes);
@@ -95,10 +99,6 @@ EFIDynCmdProtocolLpHandler()
                     //
                 }
             }
-            if (0 == ProtocolIndex)
-                Print(L"Handle 0X%08X:   %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
-            else
-                Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
             Print(L"\n\n");
         }
     }
