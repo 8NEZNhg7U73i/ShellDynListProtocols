@@ -101,10 +101,10 @@ EFIDynCmdProtocolLpHandler()
             }
             Print(L"\n\n");
         }
-        FreePool(StrPath);
-        gBS->FreePool(OpenInfo);
-        gBS->FreePool(ProtocolBuffer);
     }
+    FreePool(StrPath);
+    gBS->FreePool(OpenInfo);
+    gBS->FreePool(ProtocolBuffer);
 
     gBS->FreePool(HandleBuffer);
 
