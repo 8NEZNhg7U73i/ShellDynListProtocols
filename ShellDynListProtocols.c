@@ -75,18 +75,33 @@ EFIDynCmdProtocolLpHandler()
         if (!(DevicePath == NULL))
         {
             StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
-            Print(L"%s\n", StrPath);
+            Print(L"DevicePath: %s\n", StrPath);
         }
-        // MemFree(StrPath);
 
         for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
         {
+            Status = gBS->OpenProtocolInformation(HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
+            if (!EFI_ERROR(Status))
+            {
+                for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
+                {
+                    Print(L"%p is the handle\n", HandleBuffer[HandleIndex]);
+                    Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
+                    Print(L"%p is the agent handle\n", OpenInfo[OpenInfoIndex]->AgentHandle);
+                    Print(L"%p is the controller handle\n", OpenInfo[OpenInfoIndex]->ControllerHandle);
+                    Print(L"%d is the attributes\n", OpenInfo[OpenInfoIndex]->Attributes);
+                    Print(L"%d is the opencount\n", OpenInfo[OpenInfoIndex]->OpenCount);
+                    // OpenInfo[OpenInfoIndex] is an agent that has opened a protocol
+                    //
+                }
                 if (0 == ProtocolIndex)
                     Print(L"Handle 0X%08X:   %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
                 else
                     Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
             }
         }
+        MemFree(StrPath);
+        gBS->FreePool(OpenInfo);
         gBS->FreePool(ProtocolBuffer);
     }
 
