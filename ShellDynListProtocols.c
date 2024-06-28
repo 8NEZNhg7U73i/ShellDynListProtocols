@@ -87,10 +87,10 @@ EFIDynCmdProtocolLpHandler()
                 {
                     Print(L"%p is the handle\n", HandleBuffer[HandleIndex]);
                     Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
-                    Print(L"%p is the agent handle\n", OpenInfo[OpenInfoIndex]->AgentHandle);
-                    Print(L"%p is the controller handle\n", OpenInfo[OpenInfoIndex]->ControllerHandle);
-                    Print(L"%d is the attributes\n", OpenInfo[OpenInfoIndex]->Attributes);
-                    Print(L"%d is the opencount\n", OpenInfo[OpenInfoIndex]->OpenCount);
+                    Print(L"%p is the agent handle\n", OpenInfo[OpenInfoIndex].AgentHandle);
+                    Print(L"%p is the controller handle\n", OpenInfo[OpenInfoIndex].ControllerHandle);
+                    Print(L"%d is the attributes\n", OpenInfo[OpenInfoIndex].Attributes);
+                    Print(L"%d is the opencount\n", OpenInfo[OpenInfoIndex].OpenCount);
                     // OpenInfo[OpenInfoIndex] is an agent that has opened a protocol
                     //
                 }
