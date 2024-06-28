@@ -40,6 +40,9 @@ EFIDynCmdProtocolLpHandler()
     UINTN ProtocolIndex;
     EFI_DEVICE_PATH *DevicePath;
     CHAR16 *StrPath;
+    EFI_OPEN_PROTOCOL_INFORMATION_ENTRY *OpenInfo;
+    UINTN OpenInfoCount;
+    UINTN OpenInfoIndex;
 
     // 1st get list of all handles
     Status = gBS->LocateHandleBuffer(
