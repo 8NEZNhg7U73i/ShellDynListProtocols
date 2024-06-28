@@ -77,6 +77,10 @@ EFIDynCmdProtocolLpHandler()
             StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
             Print(L"DevicePath: %s\n", StrPath);
         }
+        else
+        {
+            Print(L"DevicePath is NULL\n");
+        }
 
         for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
         {
