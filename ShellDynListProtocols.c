@@ -83,10 +83,14 @@ EFIDynCmdProtocolLpHandler()
             Status = gBS->OpenProtocolInformation(HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
             if (!EFI_ERROR(Status))
             {
-            if (0 == ProtocolIndex)
-                Print(L"Handle 0X%08X:   %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
-            else
-                Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
+                if (0 == ProtocolIndex)
+                {
+                    Print(L"Handle 0X%08X:   %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
+                }
+                else
+                {
+                    Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
+                }
                 for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
                 {
                     //Print(L"%p is the handle\n", HandleBuffer[HandleIndex]);
