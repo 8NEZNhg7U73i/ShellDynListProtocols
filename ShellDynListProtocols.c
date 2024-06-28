@@ -71,13 +71,6 @@ EFIDynCmdProtocolLpHandler()
             return EFI_ABORTED;
         }
 
-        for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
-        {
-            if (0 == ProtocolIndex)
-                Print(L"Handle 0x%08X:   %g\n", pHandleBuffer[HandleIndex], pProtocolBuffer[ProtocolIndex]);
-            else
-                Print(L"                     %g\n", pProtocolBuffer[ProtocolIndex]);
-        }
         DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
         if (!(DevicePath == NULL))
         {
@@ -86,6 +79,14 @@ EFIDynCmdProtocolLpHandler()
         }
         // MemFree(StrPath);
 
+        for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
+        {
+                if (0 == ProtocolIndex)
+                    Print(L"Handle 0X%08X:   %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
+                else
+                    Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
+            }
+        }
         gBS->FreePool(ProtocolBuffer);
     }
 
