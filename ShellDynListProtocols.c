@@ -94,11 +94,11 @@ EFIDynCmdProtocolLpHandler()
                     // OpenInfo[OpenInfoIndex] is an agent that has opened a protocol
                     //
                 }
-                if (0 == ProtocolIndex)
-                    Print(L"Handle 0X%08X:   %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
-                else
-                    Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
             }
+            if (0 == ProtocolIndex)
+                Print(L"Handle 0X%08X:   %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
+            else
+                Print(L"                     %g\n", ProtocolBuffer[ProtocolIndex]);
             Print(L"\n\n");
         }
     }
