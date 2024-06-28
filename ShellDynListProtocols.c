@@ -103,8 +103,8 @@ EFIDynCmdProtocolLpHandler()
                     //
                 }
             }
-            Print(L"\n\n");
         }
+        Print(L"\n\n");
     }
     gBS->FreePool(StrPath);
     gBS->FreePool(OpenInfo);
