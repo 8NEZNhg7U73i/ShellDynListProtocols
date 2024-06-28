@@ -99,7 +99,14 @@ EFIDynCmdProtocolLpHandler()
                 {
                     //Print(L"%p is the handle\n", HandleBuffer[HandleIndex]);
                     //Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
+                    if (0 == OpenInfoIndex)
+                    {
+                    Print(L"                                                          Agent: 0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
+                    }
+                    else
+                    {
                     Print(L"                                                          0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
+                    }
 /*
                     Print(L"                                                          0X%08X is the agent handle\n", OpenInfo[OpenInfoIndex].AgentHandle);
                     Print(L"                                                          0X%08X is the controller handle\n", OpenInfo[OpenInfoIndex].ControllerHandle);
