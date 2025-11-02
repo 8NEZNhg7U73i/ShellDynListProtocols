@@ -30,9 +30,7 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
     // EFI_SYSTEM_TABLE  *SystemTable;
     // EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
     EFI_STATUS Status;
-    UINTN HandleCount;
-    EFI_HANDLE * HandleBuffer;
-    UINTN HandleIndex;
+    EFI_HANDLE *HandleBuffer;
     UINTN ProtocolCount;
     EFI_GUID **ProtocolBuffer;
     UINTN ProtocolIndex;
