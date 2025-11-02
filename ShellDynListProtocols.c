@@ -112,7 +112,6 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
     return EFI_SUCCESS;
 }
 
-
 /**
   Main entry point of the dynamic EFI extension driver.
 
