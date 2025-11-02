@@ -21,7 +21,15 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiApplicationEntryPoint.h>
-
+#include <Protocol/DevicePathFromText.h>
+#include <Protocol/DevicePathToText.h>
+#include <Protocol/DevicePathUtilities.h>
+#include <Protocol/LoadedImage.h>
+#include <Protocol/SimpleFileSystem.h>
+#include <Protocol/ShellParameters.h>
+#include <Protocol/PartitionInfo.h>
+#include <Protocol/BlockIo.h>
+#include "UefiDiskAccess.h"
 /**
   GUID definitions
 **/
