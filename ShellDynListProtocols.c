@@ -14,27 +14,27 @@
 #include <Library/DevicePathLib.h>
 #include "ShellDynListProtocols.h"
 #include <Library/MemoryAllocationLib.h>
+#include <Uefi.h>
+#include <Library/UefiBootServicesTableLib.h>
+#include <Library/UefiShellLib.h>
 
 /**
   GUID definitions
 **/
-STATIC CONST EFI_GUID mEFIDynListProtocolsHiiGuid = { 0X4AC75E15, 0X5DF5, 0X4F57,{ 0XAA, 0X08, 0X06, 0XD8, 0XB4, 0XB0, 0X5D, 0X1D } };
-
-
+STATIC CONST EFI_GUID mEFIDynListProtocolsHiiGuid = {0X4AC75E15, 0X5DF5, 0X4F57, {0XAA, 0X08, 0X06, 0XD8, 0XB4, 0XB0, 0X5D, 0X1D}};
 
 STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
-
 
 EFI_STATUS
 EFIAPI
 EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
 {
-    //EFI_SYSTEM_TABLE  *SystemTable;
-    //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
+    // EFI_SYSTEM_TABLE  *SystemTable;
+    // EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
     EFI_STATUS Status;
-    EFI_HANDLE * HandleBuffer;
+    EFI_HANDLE *HandleBuffer;
     UINTN ProtocolCount;
-    EFI_GUID ** ProtocolBuffer;
+    EFI_GUID **ProtocolBuffer;
     UINTN ProtocolIndex;
     EFI_DEVICE_PATH *DevicePath;
     CHAR16 *StrPath;
@@ -80,29 +80,29 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
             }
             for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
             {
-                //Print(L"%p is the handle\n", InputHandle);
-                //Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
+                // Print(L"%p is the handle\n", InputHandle);
+                // Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
                 if (0 == OpenInfoIndex)
                 {
-                Print(L"                                                        Agent: 0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
+                    Print(L"                                                        Agent: 0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
                 }
                 else
                 {
-                Print(L"                                                               0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
+                    Print(L"                                                               0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
                 }
-/*
-                Print(L"                                                         0X%08X is the agent handle\n", OpenInfo[OpenInfoIndex].AgentHandle);
-                Print(L"                                                         0X%08X is the controller handle\n", OpenInfo[OpenInfoIndex].ControllerHandle);
-                Print(L"                                                         %d is the attributes\n", OpenInfo[OpenInfoIndex].Attributes);
-                Print(L"                                                         %d is the opencount\n", OpenInfo[OpenInfoIndex].OpenCount);
-*/
+                /*
+                                Print(L"                                                         0X%08X is the agent handle\n", OpenInfo[OpenInfoIndex].AgentHandle);
+                                Print(L"                                                         0X%08X is the controller handle\n", OpenInfo[OpenInfoIndex].ControllerHandle);
+                                Print(L"                                                         %d is the attributes\n", OpenInfo[OpenInfoIndex].Attributes);
+                                Print(L"                                                         %d is the opencount\n", OpenInfo[OpenInfoIndex].OpenCount);
+                */
                 // OpenInfo[OpenInfoIndex] is an agent that has opened a protocol
                 //
             }
         }
     }
     Print(L"\n");
-    
+
     gBS->FreePool(StrPath);
     gBS->FreePool(OpenInfo);
     gBS->FreePool(ProtocolBuffer);
@@ -111,7 +111,6 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
 
     return EFI_SUCCESS;
 }
-
 
 /**
   Main entry point of the dynamic EFI extension driver.
@@ -126,22 +125,58 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
   @retval  EFI_LOAD_ERROR        Unable to add the HII package.
 
 **/
+
+BOOLEAN IsHexadecimal(CHAR16 *Arg)
+{
+    // Check if the argument starts with '0x' or '0X'
+    if ((Arg[0] == L'0') && ((Arg[1] == L'x') || (Arg[1] == L'X')))
+    {
+        Arg += 2; // Skip the '0x' or '0X'
+    }
+
+    // If the argument is now empty after '0x' or '0X', return FALSE
+    if (*Arg == L'\0')
+    {
+        return FALSE;
+    }
+
+    // Iterate over each character in the argument
+    while (*Arg != L'\0')
+    {
+        // Check if the character is between '0'-'9', 'A'-'F', or 'a'-'f'
+        if (!(((*Arg >= L'0') && (*Arg <= L'9')) ||
+              ((*Arg >= L'A') && (*Arg <= L'F')) ||
+              ((*Arg >= L'a') && (*Arg <= L'f'))))
+        {
+            return FALSE;
+        }
+        Arg++;
+    }
+    return TRUE;
+}
+
 EFI_STATUS
 EFIAPI
-EFIDynListProtocolsEntryPoint (
-  IN EFI_HANDLE        ImageHandle,
-  IN EFI_SYSTEM_TABLE  *SystemTable
-  )
+EFIDynListProtocolsEntryPoint(
+    IN EFI_HANDLE ImageHandle,
+    IN EFI_SYSTEM_TABLE *SystemTable)
 {
-    //EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
-    EFI_STATUS  Status;
-    EFI_HANDLE  Handle;
+    EFI_STATUS Status;
+    CHAR16 *ArgValue;
+    STATUS = ShellInitialize();
+    UINTN Index = 1; // Start from index 1 to skip the command name itself
 
-    Handle = NULL;
-    Status = EFIDynCmdProtocolLpHandlerbyhandle();
-    if (!Status==0)
+    if (!EFI_ERROR(STATUS) && !(gEfiShellProtocol == NULL))
     {
-        return EFI_LOAD_ERROR;
+        while (ShellCommandLineGetRawValue(ShellProtocol, Index, &ArgValue) == EFI_SUCCESS)
+        {
+            Print(L"Argument %d: %08X\n", Index, ArgValue); // Print or process the argument value
+            if (!EFI_ERROR(IsHexadecimal(ArgValue)))
+            {
+
+                EFIDynCmdProtocolLpHandlerbyhandle(ArgValue);
+            }
+            Index++; // Move to the next argument
+        }
     }
-    return EFI_SUCCESS;
 }
