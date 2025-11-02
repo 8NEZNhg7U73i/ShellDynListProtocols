@@ -117,22 +117,65 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
   @retval  EFI_LOAD_ERROR        Unable to add the HII package.
 
 **/
+
+BOOLEAN IsHexadecimal(CHAR16 *Arg)
+{
+    // Check if the argument starts with '0x' or '0X'
+    if ((Arg[0] == L'0') && ((Arg[1] == L'x') || (Arg[1] == L'X')))
+    {
+        Arg += 2; // Skip the '0x' or '0X'
+    }
+
+    // If the argument is now empty after '0x' or '0X', return FALSE
+    if (*Arg == L'\0')
+    {
+        return FALSE;
+    }
+
+    // Iterate over each character in the argument
+    while (*Arg != L'\0')
+    {
+        // Check if the character is between '0'-'9', 'A'-'F', or 'a'-'f'
+        if (!(((*Arg >= L'0') && (*Arg <= L'9')) ||
+              ((*Arg >= L'A') && (*Arg <= L'F')) ||
+              ((*Arg >= L'a') && (*Arg <= L'f'))))
+        {
+            return FALSE;
+        }
+        Arg++;
+    }
+    return TRUE;
+}
+
 EFI_STATUS
 EFIAPI
-EFIDynListProtocolsEntryPoint (
-  IN EFI_HANDLE        ImageHandle,
-  IN EFI_SYSTEM_TABLE  *SystemTable
-  )
+EFIDynListProtocolsEntryPoint(
+    IN EFI_HANDLE ImageHandle,
+    IN EFI_SYSTEM_TABLE *SystemTable)
 {
-    //EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
-    EFI_STATUS  Status;
-    EFI_HANDLE  Handle;
+    EFI_STATUS Status;
+    CHAR16 *ArgValue = AllocateZeroPool(sizeof(CHAR16));
+    LIST_ENTRY *Package;
+    UINTN Index = 1; // Start from index 1 to skip the command name itself
 
-    Handle = NULL;
-    Status = EFIDynCmdProtocolLpHandler();
-    if (!Status==0)
+    Status = ShellInitialize();
+
+    if (!EFI_ERROR(Status) && !(gEfiShellProtocol == NULL))
     {
-        return EFI_LOAD_ERROR;
+        while (ArgValue)
+        {
+            FreePool(ArgValue);
+            ShellCommandLineGetRawValue(Package, Index);
+            Print(L"Argument %d: %08X\n", Index, ArgValue); // Print or process the argument value
+            if (!EFI_ERROR(IsHexadecimal(ArgValue)))
+            {
+                EFIDynCmdProtocolLpHandlerbyhandle(ArgValue);
+            }
+            else
+            {
+                Print(L"skip args: %s", ArgValue);
+            }
+            Index++; // Move to the next argument
+        }
     }
-    return EFI_SUCCESS;
 }
