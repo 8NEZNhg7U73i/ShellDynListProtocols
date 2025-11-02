@@ -29,7 +29,6 @@
 #include <Protocol/ShellParameters.h>
 #include <Protocol/PartitionInfo.h>
 #include <Protocol/BlockIo.h>
-#include "UefiDiskAccess.h"
 /**
   GUID definitions
 **/
