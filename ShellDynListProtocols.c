@@ -16,7 +16,7 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Uefi.h>
 #include <Library/UefiBootServicesTableLib.h>
-//#include <Library/UefiShellLib/UefiShellLib.inf>
+// #include <Library/UefiShellLib/UefiShellLib.inf>
 #include <Library/ShellLib.h>
 
 /**
@@ -163,19 +163,26 @@ EFIDynListProtocolsEntryPoint(
     IN EFI_SYSTEM_TABLE *SystemTable)
 {
     EFI_STATUS Status;
-    CHAR16 *ArgValue;
-    Status = ShellInitialize();
+    CHAR16 *ArgValue = AllocateZeroPool(sizeof(CHAR16));
+    LIST_ENTRY *Package;
     UINTN Index = 1; // Start from index 1 to skip the command name itself
+
+    Status = ShellInitialize();
 
     if (!EFI_ERROR(Status) && !(gEfiShellProtocol == NULL))
     {
-        while (ShellCommandLineGetRawValue(ShellProtocol, Index, &ArgValue) == EFI_SUCCESS)
+        while (ArgValue)
         {
+            FreePool(ArgValue);
+            ArgValue = ShellCommandLineGetRawValue(Package, Index);
             Print(L"Argument %d: %08X\n", Index, ArgValue); // Print or process the argument value
             if (!EFI_ERROR(IsHexadecimal(ArgValue)))
             {
-
                 EFIDynCmdProtocolLpHandlerbyhandle(ArgValue);
+            }
+            else
+            {
+                OUT_PRINT(L"skip args: %s", ArgValue);
             }
             Index++; // Move to the next argument
         }
