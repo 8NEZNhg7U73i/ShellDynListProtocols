@@ -18,6 +18,7 @@
 #include <Library/UefiBootServicesTableLib.h>
 // #include <Library/UefiShellLib/UefiShellLib.inf>
 #include <Library/ShellLib.h>
+#include <Library/PrintLib.h>
 
 /**
   GUID definitions
