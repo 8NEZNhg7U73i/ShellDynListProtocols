@@ -43,7 +43,6 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
     // EFI_SYSTEM_TABLE  *SystemTable;
     // EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
     EFI_STATUS Status;
-    EFI_HANDLE *HandleBuffer;
     UINTN ProtocolCount;
     EFI_GUID **ProtocolBuffer;
     UINTN ProtocolIndex;
@@ -61,7 +60,6 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
     if (EFI_ERROR(Status))
     {
         DEBUG((EFI_D_ERROR, "ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, InputHandle, Status));
-        gBS->FreePool(HandleBuffer);
         return EFI_ABORTED;
     }
 
@@ -118,7 +116,6 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
     gBS->FreePool(OpenInfo);
     gBS->FreePool(ProtocolBuffer);
 
-    gBS->FreePool(HandleBuffer);
 
     return EFI_SUCCESS;
 }
