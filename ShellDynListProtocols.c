@@ -22,7 +22,6 @@ STATIC CONST EFI_GUID mEFIDynListProtocolsHiiGuid = {0X4AC75E15, 0X5DF5, 0X4F57,
 
 STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
-
 EFI_STATUS
 EFIAPI
 EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
