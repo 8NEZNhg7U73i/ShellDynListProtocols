@@ -16,9 +16,11 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Uefi.h>
 #include <Library/UefiBootServicesTableLib.h>
-// #include <Library/UefiShellLib/UefiShellLib.inf>
 #include <Library/ShellLib.h>
 #include <Library/PrintLib.h>
+#include <Library/BaseMemoryLib.h>
+#include <Library/UefiLib.h>
+#include <Library/UefiApplicationEntryPoint.h>
 
 /**
   GUID definitions
