@@ -23,9 +23,6 @@
 #include <Library/HiiLib.h>
 #include <Library/DebugLib.h>
 
-#define OUT_PRINT(format, ...) ShellPrintExMod(-1, -1, format, ##__VA_ARGS__)
-#define ERR_PRINT(format, ...) ShellPrintExMod(-1, -1, L"%E" format L"%N", ##__VA_ARGS__)
-
 /**
 This is the shell command "lp" handler function. This function handles
 the command when it is invoked in the shell.
@@ -62,25 +59,5 @@ EFIDynCmdProtocolLpGetHelp(
 
 extern EFI_BOOT_SERVICES *gBS;
 extern EFI_SYSTEM_TABLE *gST;
-
-EFI_STATUS
-EFIAPI
-ShellPrintExMod(
-  IN INT32                Col OPTIONAL,
-  IN INT32                Row OPTIONAL,
-  IN CONST CHAR16         *Format,
-  ...
-  )
-{
-  VA_LIST           Marker;
-  EFI_STATUS        RetVal;
-  if (Format == NULL) {
-    return (EFI_INVALID_PARAMETER);
-  }
-  VA_START (Marker, Format);
-  RetVal = InternalShellPrintWorkerMod(Col, Row, Format, Marker);
-  VA_END(Marker);
-  return(RetVal);
-}
 
 #endif /* __SHELL_DYN_LIST_PROTOCOLS_H__ */
