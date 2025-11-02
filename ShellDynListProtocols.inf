@@ -36,6 +36,13 @@
   PrintLib
   DevicePathLib
   MemoryAllocationLib
+  ShellLib
+  BaseLib
+  DebugPrintErrorLevelLib
+  BaseMemoryLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  RngLib
 
 [Protocols]
   gEfiShellDynamicCommandProtocolGuid
