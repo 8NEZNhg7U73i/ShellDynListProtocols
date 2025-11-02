@@ -25,10 +25,10 @@ STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
 EFI_STATUS
 EFIAPI
-EFIDynCmdProtocolLpHandler()
+EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
 {
-    //EFI_SYSTEM_TABLE  *SystemTable;
-    //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
+    // EFI_SYSTEM_TABLE  *SystemTable;
+    // EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
     EFI_STATUS Status;
     UINTN HandleCount;
     EFI_HANDLE * HandleBuffer;
