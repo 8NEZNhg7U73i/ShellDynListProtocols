@@ -116,7 +116,6 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
     gBS->FreePool(OpenInfo);
     gBS->FreePool(ProtocolBuffer);
 
-
     return EFI_SUCCESS;
 }
 
@@ -181,7 +180,7 @@ EFIDynListProtocolsEntryPoint(
         while (ArgValue)
         {
             FreePool(ArgValue);
-            ShellCommandLineGetRawValue(Package, Index);
+            ArgValue = ShellCommandLineGetRawValue(Package, Index);
             Print(L"Argument %d: %08X\n", Index, ArgValue); // Print or process the argument value
             if (!EFI_ERROR(IsHexadecimal(ArgValue)))
             {
