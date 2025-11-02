@@ -17,6 +17,7 @@
 #include <Uefi.h>
 #include <Library/UefiBootServicesTableLib.h>
 //#include <Library/UefiShellLib/UefiShellLib.inf>
+#include <Library/ShellLib.h>
 
 /**
   GUID definitions
@@ -163,10 +164,10 @@ EFIDynListProtocolsEntryPoint(
 {
     EFI_STATUS Status;
     CHAR16 *ArgValue;
-    STATUS = ShellInitialize();
+    Status = ShellInitialize();
     UINTN Index = 1; // Start from index 1 to skip the command name itself
 
-    if (!EFI_ERROR(STATUS) && !(gEfiShellProtocol == NULL))
+    if (!EFI_ERROR(Status) && !(gEfiShellProtocol == NULL))
     {
         while (ShellCommandLineGetRawValue(ShellProtocol, Index, &ArgValue) == EFI_SUCCESS)
         {
