@@ -170,7 +170,7 @@ EFIDynListProtocolsEntryPoint(
 {
     EFI_STATUS Status;
     CHAR16 *ArgValue = AllocateZeroPool(sizeof(CHAR16));
-    LIST_ENTRY *Package=AllocateZeroPool(sizeof(LIST_ENTRY));
+    LIST_ENTRY *Package = AllocateZeroPool(sizeof(LIST_ENTRY));
     UINTN Index = 1; // Start from index 1 to skip the command name itself
 
     Status = ShellInitialize();
@@ -184,7 +184,7 @@ EFIDynListProtocolsEntryPoint(
             Print(L"Argument %d: %08X\n", Index, ArgValue); // Print or process the argument value
             if (!EFI_ERROR(IsHexadecimal(ArgValue)))
             {
-                EFIDynCmdProtocolLpHandlerbyhandle(ArgValue);
+                EFIDynCmdProtocolLpHandlerbyhandle((EFI_HANDLE *)ArgValue);
             }
             else
             {
