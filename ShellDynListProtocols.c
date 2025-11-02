@@ -34,7 +34,7 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
     EFI_HANDLE * HandleBuffer;
     UINTN HandleIndex;
     UINTN ProtocolCount;
-    EFI_GUID ** ProtocolBuffer;
+    EFI_GUID **ProtocolBuffer;
     UINTN ProtocolIndex;
     EFI_DEVICE_PATH *DevicePath;
     CHAR16 *StrPath;
