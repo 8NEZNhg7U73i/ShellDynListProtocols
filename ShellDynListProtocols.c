@@ -65,39 +65,30 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
         Print(L"DevicePath is NULL\n");
     }
 
-        for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
+    for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
+    {
+        Status = gBS->OpenProtocolInformation(InputHandle, ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
+        if (!EFI_ERROR(Status))
         {
-            Status = gBS->OpenProtocolInformation(HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
-            if (!EFI_ERROR(Status))
+            if (0 == ProtocolIndex)
             {
-                if (0 == ProtocolIndex)
+                Print(L"Handle 0X%08X: %g\n", InputHandle, ProtocolBuffer[ProtocolIndex]);
+            }
+            else
+            {
+                Print(L"                   %g\n", ProtocolBuffer[ProtocolIndex]);
+            }
+            for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
+            {
+                // Print(L"%p is the handle\n", InputHandle);
+                // Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
+                if (0 == OpenInfoIndex)
                 {
-                    Print(L"Handle 0X%08X: %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
+                    Print(L"                                                        Agent: 0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
                 }
                 else
                 {
-                    Print(L"                   %g\n", ProtocolBuffer[ProtocolIndex]);
-                }
-                for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
-                {
-                    //Print(L"%p is the handle\n", HandleBuffer[HandleIndex]);
-                    //Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
-                    if (0 == OpenInfoIndex)
-                    {
-                    Print(L"                                                        Agent: 0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
-                    }
-                    else
-                    {
                     Print(L"                                                               0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
-                    }
-/*
-                    Print(L"                                                         0X%08X is the agent handle\n", OpenInfo[OpenInfoIndex].AgentHandle);
-                    Print(L"                                                         0X%08X is the controller handle\n", OpenInfo[OpenInfoIndex].ControllerHandle);
-                    Print(L"                                                         %d is the attributes\n", OpenInfo[OpenInfoIndex].Attributes);
-                    Print(L"                                                         %d is the opencount\n", OpenInfo[OpenInfoIndex].OpenCount);
-*/
-                    // OpenInfo[OpenInfoIndex] is an agent that has opened a protocol
-                    //
                 }
             }
         }
