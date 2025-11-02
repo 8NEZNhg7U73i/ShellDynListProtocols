@@ -37,6 +37,7 @@
   DevicePathLib
   MemoryAllocationLib
   ShellLib
+  
 [Protocols]
   gEfiShellDynamicCommandProtocolGuid
   gEfiDevicePathProtocolGuid
