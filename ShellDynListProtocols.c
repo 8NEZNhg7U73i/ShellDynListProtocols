@@ -171,7 +171,7 @@ EFIDynListProtocolsEntryPoint(
     EFI_STATUS Status;
     CHAR16 *ArgValue = AllocateZeroPool(sizeof(CHAR16));
     LIST_ENTRY *Package = AllocateZeroPool(sizeof(LIST_ENTRY));
-    UINTN Index = 1; // Start from index 1 to skip the command name itself
+    UINTN Index = 0; // Start from index 1 to skip the command name itself
 
     Status = ShellInitialize();
 
