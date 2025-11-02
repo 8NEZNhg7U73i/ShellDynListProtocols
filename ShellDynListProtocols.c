@@ -92,8 +92,9 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
                 }
             }
         }
-        Print(L"\n");
     }
+    Print(L"\n");
+
     gBS->FreePool(StrPath);
     gBS->FreePool(OpenInfo);
     gBS->FreePool(ProtocolBuffer);
