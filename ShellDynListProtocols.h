@@ -23,6 +23,9 @@
 #include <Library/HiiLib.h>
 #include <Library/DebugLib.h>
 
+#define OUT_PRINT(format, ...) ShellPrintExMod(-1, -1, format, ##__VA_ARGS__)
+#define ERR_PRINT(format, ...) ShellPrintExMod(-1, -1, L"%E" format L"%N", ##__VA_ARGS__)
+
 /**
 This is the shell command "lp" handler function. This function handles
 the command when it is invoked in the shell.
