@@ -193,4 +193,5 @@ EFIDynListProtocolsEntryPoint(
             Index++; // Move to the next argument
         }
     }
+    return EFI_SUCCESS
 }
