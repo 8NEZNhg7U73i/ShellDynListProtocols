@@ -63,4 +63,24 @@ EFIDynCmdProtocolLpGetHelp(
 extern EFI_BOOT_SERVICES *gBS;
 extern EFI_SYSTEM_TABLE *gST;
 
+EFI_STATUS
+EFIAPI
+ShellPrintExMod(
+  IN INT32                Col OPTIONAL,
+  IN INT32                Row OPTIONAL,
+  IN CONST CHAR16         *Format,
+  ...
+  )
+{
+  VA_LIST           Marker;
+  EFI_STATUS        RetVal;
+  if (Format == NULL) {
+    return (EFI_INVALID_PARAMETER);
+  }
+  VA_START (Marker, Format);
+  RetVal = InternalShellPrintWorkerMod(Col, Row, Format, Marker);
+  VA_END(Marker);
+  return(RetVal);
+}
+
 #endif /* __SHELL_DYN_LIST_PROTOCOLS_H__ */
