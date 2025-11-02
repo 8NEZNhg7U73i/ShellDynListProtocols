@@ -59,7 +59,7 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
         &ProtocolCount);
     if (EFI_ERROR(Status))
     {
-        DEBUG((EFI_D_ERROR, "ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, InputHandle, Status));
+        DEBUG((EFI_D_ERROR, "ProtocolsPerHandle failed on handle 0X%x: %r\n", InputHandle, Status));
         return EFI_ABORTED;
     }
 
