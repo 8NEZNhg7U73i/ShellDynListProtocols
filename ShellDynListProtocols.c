@@ -57,27 +57,13 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
     DevicePath = DevicePathFromHandle(InputHandle);
     if (!(DevicePath == NULL))
     {
-        Status = gBS->ProtocolsPerHandle(
-            HandleBuffer[HandleIndex],
-            &ProtocolBuffer,
-            &ProtocolCount);
-        if (EFI_ERROR(Status))
-        {
-            DEBUG((EFI_D_ERROR, "ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status));
-            gBS->FreePool(HandleBuffer);
-            return EFI_ABORTED;
-        }
-
-        DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
-        if (!(DevicePath == NULL))
-        {
-            StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
-            Print(L"DevicePath: %s\n", StrPath);
-        }
-        else
-        {
-            Print(L"DevicePath is NULL\n");
-        }
+        StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
+        Print(L"DevicePath: %s\n", StrPath);
+    }
+    else
+    {
+        Print(L"DevicePath is NULL\n");
+    }
 
         for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
         {
