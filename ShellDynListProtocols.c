@@ -54,8 +54,8 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
         return EFI_ABORTED;
     }
 
-    // 2nd interate handles and get+print all protocols
-    for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
+    DevicePath = DevicePathFromHandle(InputHandle);
+    if (!(DevicePath == NULL))
     {
         Status = gBS->ProtocolsPerHandle(
             HandleBuffer[HandleIndex],
