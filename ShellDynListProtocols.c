@@ -21,7 +21,6 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiApplicationEntryPoint.h>
-#include "ShellPrintEx.h"
 
 /**
   GUID definitions
