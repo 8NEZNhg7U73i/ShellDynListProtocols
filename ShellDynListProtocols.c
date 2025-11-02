@@ -192,7 +192,7 @@ EFIDynListProtocolsEntryPoint(
             }
             else
             {
-                PRINT(L"skip args: %s", ArgValue);
+                Print(L"skip args: %s", ArgValue);
             }
             Index++; // Move to the next argument
         }
