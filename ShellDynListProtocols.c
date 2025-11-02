@@ -177,7 +177,7 @@ EFIDynListProtocolsEntryPoint(
         while (ArgValue)
         {
             FreePool(ArgValue);
-            ArgValue = ShellCommandLineGetRawValue(Package, Index);
+            ShellCommandLineGetRawValue(Package, Index);
             Print(L"Argument %d: %08X\n", Index, ArgValue); // Print or process the argument value
             if (!EFI_ERROR(IsHexadecimal(ArgValue)))
             {
