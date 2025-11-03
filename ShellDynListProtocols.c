@@ -15,6 +15,15 @@
 #include "ShellDynListProtocols.h"
 #include <Library/MemoryAllocationLib.h>
 
+#include <Uefi.h>
+#include <Library/BaseMemoryLib.h>
+#include <Library/PrintLib.h>
+#include <Library/UefiLib.h>
+#include <Protocol/BlockIo.h>
+#include <Library/UefiApplicationEntryPoint.h>
+#include "UefiDiskAccess.h"
+#include <Library/ShellLib.h>
+
 /**
   GUID definitions
 **/
@@ -203,7 +212,7 @@ EFIDynListProtocolsEntryPoint (
         {
             OUT_PRINT(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
         }
-        
+
     }
 
     Status = EFIDynCmdProtocolLpHandler();

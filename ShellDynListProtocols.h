@@ -23,6 +23,17 @@
 #include <Library/HiiLib.h>
 #include <Library/DebugLib.h>
 
+
+#include <Guid/Gpt.h>
+#include <Protocol/DevicePathFromText.h>
+#include <Protocol/DevicePathToText.h>
+#include <Protocol/DevicePathUtilities.h>
+#include <Protocol/LoadedImage.h>
+#include <Protocol/SimpleFileSystem.h>
+#include <Protocol/ShellParameters.h>
+#include <Protocol/BlockIo.h>
+#include <Protocol/PartitionInfo.h>
+
 /**
 This is the shell command "lp" handler function. This function handles
 the command when it is invoked in the shell.
