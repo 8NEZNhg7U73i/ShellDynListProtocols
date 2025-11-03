@@ -216,7 +216,7 @@ EFIDynListProtocolsEntryPoint (
             Status = ShellConvertStringToUint64(ParamStr, ParamInt, FALSE, TRUE);
             if (!EFI_ERROR(Status))
             {
-                Print(L"arg [%d] is vaild hex text\n", i);
+                Print(L"arg [%d] is vaild hex text, %08X\n", i, ParamInt);
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE)ParamInt);
                 Print(L"EFIDynCmdProtocolLpHandler: %r\n", EFIDynCmdProtocolLpHandler);
             }
