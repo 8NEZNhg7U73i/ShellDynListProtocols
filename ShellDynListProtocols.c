@@ -180,6 +180,34 @@ EFIDynListProtocolsEntryPoint (
   )
 {
     EFI_STATUS  Status;
+    EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
+    UINTN ParamCount = 0;
+
+    Status = ShellInitialize();
+
+    if (!EFI_ERROR(Status) && gEfiShellProtocol)
+    {
+        Status = gBS->OpenProtocol(
+            ImageHandle,
+            &gEfiShellParametersProtocolGuid,
+            (VOID **)&ShellParameters,
+            ImageHandle,
+            NULL,
+            EFI_OPEN_PROTOCOL_GET_PROTOCOL);
+
+        if (EFI_ERROR(Status))
+        {
+            Print(L"Open EFI_SHELL_PARAMETERS_PROTOCOL protocol failed: %r\n", Status);
+            return Status;
+        }
+
+        ParamCount = ShellParameters->Argc;
+        for (UINTN i = 0; i < ParamCount; i++)
+        {
+            Print(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
+        }
+
+    }
 
     Status = EFIDynCmdProtocolLpHandler();
     if (!EFI_ERROR (Status))
