@@ -187,6 +187,7 @@ EFIDynListProtocolsEntryPoint (
   )
 {
     EFI_STATUS  Status;
+	EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
 
     Status = ShellInitialize();
 
