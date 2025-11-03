@@ -37,7 +37,11 @@
   DevicePathLib
   MemoryAllocationLib
   ShellLib
-  
+
 [Protocols]
   gEfiShellDynamicCommandProtocolGuid
   gEfiDevicePathProtocolGuid
+
+[Pcd.common]
+  gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize     ## CONSUMES
+  gEfiShellPkgTokenSpaceGuid.PcdShellPrintBufferSize       ## CONSUMES
