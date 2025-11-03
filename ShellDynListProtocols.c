@@ -209,7 +209,7 @@ EFIDynListProtocolsEntryPoint (
         }
 
         ParamCount = ShellParameters->Argc;
-        for (UINTN i = 0; i < ParamCount; i++)
+        for (UINTN i = 1; i < ParamCount; i++)
         {
             ParamStr = ShellParameters->Argv[i];
             Print(L"ShellParameter arg [%d]: %s\n", i, ParamStr);
