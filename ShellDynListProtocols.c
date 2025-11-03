@@ -129,6 +129,34 @@ EFIDynCmdProtocolLpHandler()
     return EFI_SUCCESS;
 }
 
+BOOLEAN IsHexadecimal(CONST CHAR16 *Arg)
+{
+    // Check if the argument starts with '0x' or '0X'
+    if ((Arg[0] == L'0') && ((Arg[1] == L'x') || (Arg[1] == L'X')))
+    {
+        Arg += 2; // Skip the '0x' or '0X'
+    }
+
+    // If the argument is now empty after '0x' or '0X', return FALSE
+    if (*Arg == L'\0')
+    {
+        return FALSE;
+    }
+
+    // Iterate over each character in the argument
+    while (*Arg != L'\0')
+    {
+        // Check if the character is between '0'-'9', 'A'-'F', or 'a'-'f'
+        if (!(((*Arg >= L'0') && (*Arg <= L'9')) ||
+              ((*Arg >= L'A') && (*Arg <= L'F')) ||
+              ((*Arg >= L'a') && (*Arg <= L'f'))))
+        {
+            return FALSE;
+        }
+        Arg++;
+    }
+    return TRUE;
+}
 
 /**
   Main entry point of the dynamic EFI extension driver.
