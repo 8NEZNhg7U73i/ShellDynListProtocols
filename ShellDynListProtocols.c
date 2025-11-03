@@ -13,8 +13,8 @@ UefiMain(
     IN EFI_SYSTEM_TABLE *SystemTable)
 {
     EFI_STATUS Status;
-    CHAR16 *CommandLine = NULL;
-    CHAR16 *RawValue = NULL;
+    EFI_SHELL_PARAMETERS_PROTOCOL *CommandLine = NULL;
+    const LIST_ENTRY *RawValue = NULL;
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters = NULL;
 
     // Initialize the shell library
