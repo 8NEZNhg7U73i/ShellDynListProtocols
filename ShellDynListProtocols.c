@@ -28,7 +28,7 @@ STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
 EFI_STATUS
 EFIAPI
-EFIDynCmdProtocolLpHandler(EFI_HANDLE InputHandle OPTIONAL)
+EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL)
 {
     //EFI_SYSTEM_TABLE  *SystemTable;
     //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
@@ -47,7 +47,7 @@ EFIDynCmdProtocolLpHandler(EFI_HANDLE InputHandle OPTIONAL)
 
     if (!(InputHandle==NULL))
     {
-        Print(L"EFI_HANDLE: %08X\n", InputHandle);
+        Print(L"EFI_HANDLE: %08X, value: %08X\n", InputHandle, *InputHandle);
     }
     // 1st get list of all handles
     Status = gBS->LocateHandleBuffer(
@@ -218,7 +218,7 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg [%d] is vaild hex text, %08X\n", i, *ParamInt);
                 Print(L"arg [%d] is vaild hex text, %d\n", i, *ParamInt);
-                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE)ParamInt);
+                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt);
                 Print(L"EFIDynCmdProtocolLpHandler: %r\n", EFIDynCmdProtocolLpHandler);
             }
             else 
