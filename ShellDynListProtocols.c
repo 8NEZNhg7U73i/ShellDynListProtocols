@@ -133,7 +133,7 @@ EFIDynCmdProtocolLpHandlerbyhandle(IN EFI_HANDLE InputHandle)
 
 **/
 
-BOOLEAN IsHexadecimal(CHAR16 *Arg)
+BOOLEAN IsHexadecimal(CONST CHAR16 *Arg)
 {
     // Check if the argument starts with '0x' or '0X'
     if ((Arg[0] == L'0') && ((Arg[1] == L'x') || (Arg[1] == L'X')))
