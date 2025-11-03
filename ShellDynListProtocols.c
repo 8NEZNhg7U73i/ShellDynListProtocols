@@ -177,7 +177,7 @@ EFIDynListProtocolsEntryPoint(
 
     if (!EFI_ERROR(Status) && !(gEfiShellProtocol == NULL))
     {
-        Print(L"args count: %d", ShellShellCommandLineGetCount(Package));
+        Print(L"args count: %d", ShellCommandLineGetCount(Package));
         while (ArgValue)
         {
             Print(L"ArgValue: %p\n", ArgValue);
