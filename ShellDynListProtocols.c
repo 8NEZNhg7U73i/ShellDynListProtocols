@@ -28,7 +28,7 @@ STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
 EFI_STATUS
 EFIAPI
-EFIDynCmdProtocolLpHandler()
+EFIDynCmdProtocolLpHandler(EFI_HANDLE InputHandle)
 {
     //EFI_SYSTEM_TABLE  *SystemTable;
     //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
@@ -45,6 +45,10 @@ EFIDynCmdProtocolLpHandler()
     UINTN OpenInfoCount;
     UINTN OpenInfoIndex;
 
+    if (!(InputHandle==NULL))
+    {
+        
+    }
     // 1st get list of all handles
     Status = gBS->LocateHandleBuffer(
         AllHandles,
@@ -183,6 +187,8 @@ EFIDynListProtocolsEntryPoint (
     EFI_STATUS  Status;
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount = 0;
+    CHAR16 *ParamStr = NULL;
+    UINTN *ParamInt = NULL;
 
     Status = ShellInitialize();
 
@@ -205,9 +211,14 @@ EFIDynListProtocolsEntryPoint (
         ParamCount = ShellParameters->Argc;
         for (UINTN i = 0; i < ParamCount; i++)
         {
-            Print(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
+            ParamStr = &(ShellParameters->Argv[i]);
+            Print(L"ShellParameter arg [%d]: %s\n", i, ParamStr);
+            Status = ShellConvertStringToUint64(ParamStr, ParamInt, TRUE, TRUE);
+            if (!EFI_ERROR(Status))
+            {
+                EFIDynCmdProtocolLpHandler((EFI_HANDLE)ParamInt);
+            }
         }
-
     }
 
     Status = EFIDynCmdProtocolLpHandler();
