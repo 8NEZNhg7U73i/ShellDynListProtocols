@@ -186,7 +186,7 @@ EFIDynListProtocolsEntryPoint(
                 SetShellAPI(gEfiShellProtocol, gEfiShellParametersProtocol);
             }
 
-            ParamCount = ShellCommandLineGetCount(Package);
+            Count = ShellCommandLineGetCount(Package);
 
             Print(L"ArgValue: %p\n", ArgValue);
             Print(L"Argument %d: %s [%08X]\n", Index, *ArgValue, ArgValue); // Print or process the argument value
