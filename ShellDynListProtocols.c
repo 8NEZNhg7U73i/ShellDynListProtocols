@@ -173,7 +173,8 @@ EFIDynListProtocolsEntryPoint(
     LIST_ENTRY *Package = AllocateZeroPool(sizeof(LIST_ENTRY));
     UINTN Index = 0; // Start from index 1 to skip the command name itself
     UINTN Count = 0;
-
+    BOOLEAN gShellReady;
+    
     Status = ShellInitialize();
 
     if (!EFI_ERROR(Status) && !(gEfiShellProtocol == NULL))
