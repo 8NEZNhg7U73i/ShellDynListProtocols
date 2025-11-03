@@ -188,7 +188,7 @@ EFIDynListProtocolsEntryPoint (
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount = 0;
     CHAR16 *ParamStr = NULL;
-    UINTN *ParamInt = NULL;
+    UINTN64 *ParamInt = NULL;
 
     Status = ShellInitialize();
 
@@ -211,7 +211,7 @@ EFIDynListProtocolsEntryPoint (
         ParamCount = ShellParameters->Argc;
         for (UINTN i = 0; i < ParamCount; i++)
         {
-            ParamStr = &(ShellParameters->Argv[i]);
+            ParamStr = ShellParameters->Argv[i];
             Print(L"ShellParameter arg [%d]: %s\n", i, ParamStr);
             Status = ShellConvertStringToUint64(ParamStr, ParamInt, TRUE, TRUE);
             if (!EFI_ERROR(Status))
