@@ -169,7 +169,7 @@ EFIDynListProtocolsEntryPoint(
     IN EFI_SYSTEM_TABLE *SystemTable)
 {
     EFI_STATUS Status;
-    CONST CHAR16 *ArgValue;
+    CONST CHAR16 *ArgValue = AllocateZeroPool(sizeof(LIST_ENTRY));
     LIST_ENTRY *Package = AllocateZeroPool(sizeof(LIST_ENTRY));
     UINTN Index = 0; // Start from index 1 to skip the command name itself
 
