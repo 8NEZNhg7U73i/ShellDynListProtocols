@@ -221,7 +221,7 @@ EFIDynListProtocolsEntryPoint (
         }
     }
 
-    Status = EFIDynCmdProtocolLpHandler();
+    Status = EFIDynCmdProtocolLpHandler(NULL);
     if (!EFI_ERROR (Status))
     {
         return EFI_LOAD_ERROR;
