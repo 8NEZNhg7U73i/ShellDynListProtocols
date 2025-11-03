@@ -177,12 +177,11 @@ EFIDynListProtocolsEntryPoint(
 
     if (!EFI_ERROR(Status) && !(gEfiShellProtocol == NULL))
     {
-        Print(L"args count: %d", ShellShellCommandLineGetCount());
+        Print(L"args count: %d", ShellShellCommandLineGetCount(Package));
         while (ArgValue)
         {
             Print(L"ArgValue: %p\n", ArgValue);
             Print(L"Argument %d: %s [%08X]\n", Index, *ArgValue, ArgValue); // Print or process the argument value
-            Print(L"ArgCount: %d\n", ShellCommandLineGetCount(Package));
 
             ArgValue = ShellCommandLineGetRawValue(Package, Index);
             if (!EFI_ERROR(IsHexadecimal(ArgValue)))
