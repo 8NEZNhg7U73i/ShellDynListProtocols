@@ -187,7 +187,8 @@ EFIDynListProtocolsEntryPoint (
   )
 {
     EFI_STATUS  Status;
-	EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
+    EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
+    ParamCount = 0;
 
     Status = ShellInitialize();
 
@@ -210,7 +211,7 @@ EFIDynListProtocolsEntryPoint (
         ParamCount = ShellParameters->Argc;
         for (UINTN i = 0; i < ParamCount; i++)
         {
-            OUT_PRINT(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
+            Print(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
         }
 
     }
