@@ -21,7 +21,6 @@
 #include <Library/UefiLib.h>
 #include <Protocol/BlockIo.h>
 #include <Library/UefiApplicationEntryPoint.h>
-#include "UefiDiskAccess.h"
 #include <Library/ShellLib.h>
 
 /**
