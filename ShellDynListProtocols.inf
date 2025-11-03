@@ -50,10 +50,17 @@
   UefiRuntimeServicesTableLib
   ShellLib
   RngLib
-  
+
 [Protocols]
   gEfiShellDynamicCommandProtocolGuid
   gEfiDevicePathProtocolGuid
+  gEfiBlockIoProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiPartitionInfoProtocolGuid
+  gEfiDiskIoProtocolGuid
+  gEfiBlockIo2ProtocolGuid
+  gEfiDiskIo2ProtocolGuid
+  gEfiLoadedImageProtocolGuid
 
 [Pcd.common]
   gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize     ## CONSUMES
