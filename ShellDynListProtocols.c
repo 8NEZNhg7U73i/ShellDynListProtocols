@@ -220,7 +220,7 @@ EFIDynListProtocolsEntryPoint (
             }
             else 
             {
-                Print(L"arg [%d] is not vaild handle\n", i, ParamStr);
+                Print(L"arg [%d] is not vaild handle, %r\n", i, Status);
             }
         }
     }
