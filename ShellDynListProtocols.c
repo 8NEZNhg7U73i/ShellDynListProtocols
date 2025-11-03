@@ -180,10 +180,10 @@ EFIDynListProtocolsEntryPoint(
         while (ArgValue)
         {
             Print(L"ArgValue: %p\n", ArgValue);
-            //FreePool(ArgValue);
-            ShellCommandLineGetRawValue(Package, Index);
+            // FreePool(ArgValue);
+            ArgValue = ShellCommandLineGetRawValue(Package, Index);
             Print(L"Argument %d: %08X\n", Index, ArgValue); // Print or process the argument value
-            Print(L"Argument %d: %s\n", Index, *ArgValue); // Print or process the argument value
+            Print(L"Argument %d: %s\n", Index, *ArgValue);  // Print or process the argument value
             if (!EFI_ERROR(IsHexadecimal(ArgValue)))
             {
                 EFIDynCmdProtocolLpHandlerbyhandle((EFI_HANDLE *)ArgValue);
