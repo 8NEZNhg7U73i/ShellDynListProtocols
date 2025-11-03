@@ -172,6 +172,7 @@ EFIDynListProtocolsEntryPoint(
     CONST CHAR16 *ArgValue = AllocateZeroPool(sizeof(LIST_ENTRY));
     LIST_ENTRY *Package = AllocateZeroPool(sizeof(LIST_ENTRY));
     UINTN Index = 0; // Start from index 1 to skip the command name itself
+    UINTN Count = 0;
 
     Status = ShellInitialize();
 
@@ -181,7 +182,8 @@ EFIDynListProtocolsEntryPoint(
         {
             Print(L"ArgValue: %p\n", ArgValue);
             Print(L"Argument %d: %s [%08X]\n", Index, *ArgValue, ArgValue); // Print or process the argument value
-            Print(L"args count: %d", &ShellCommandLineGetCount(Package));
+            Count = ShellCommandLineGetCount(Package);
+            Print(L"args count: %d", Count);
 
             ArgValue = ShellCommandLineGetRawValue(Package, Index);
             if (!EFI_ERROR(IsHexadecimal(ArgValue)))
