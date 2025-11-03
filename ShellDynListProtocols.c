@@ -230,6 +230,6 @@ EFIDynListProtocolsEntryPoint (
         {
             return EFI_LOAD_ERROR;
         }
-        return EFI_SUCCESS;
     */
+        return EFI_SUCCESS;
 }
