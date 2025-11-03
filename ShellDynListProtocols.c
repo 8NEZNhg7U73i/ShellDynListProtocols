@@ -152,9 +152,7 @@ EFIDynListProtocolsEntryPoint (
 {
     //EFI_BOOT_SERVICES * gBS = SystemTable->BootServices;
     EFI_STATUS  Status;
-    EFI_HANDLE  Handle;
 
-    Handle = NULL;
     Status = EFIDynCmdProtocolLpHandler();
     if (!Status==0)
     {
