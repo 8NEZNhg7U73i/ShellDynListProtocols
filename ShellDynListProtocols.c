@@ -139,11 +139,11 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE InputHandle OPTIONAL, IN EFI_GUID Input
         }
         Print(L"\n");
     }
-    gBS->FreePool(StrPath);
-    gBS->FreePool(OpenInfo);
-    gBS->FreePool(ProtocolBuffer);
+    //gBS->FreePool(StrPath);
+    //gBS->FreePool(OpenInfo);
+    //gBS->FreePool(ProtocolBuffer);
 
-    gBS->FreePool(HandleBuffer);
+    //gBS->FreePool(HandleBuffer);
 
     return EFI_SUCCESS;
 }
