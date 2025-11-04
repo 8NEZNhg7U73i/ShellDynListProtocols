@@ -67,8 +67,8 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
         HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE));
         if (!HandleBuffer)
         {
-            Print(L"Can not allocate memory, %r\n", Status);
-            return Status;
+            Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
+            return EFI_OUT_OF_RESOURCES;
         }
         CopyMem(InputHandle, HandleBuffer, sizeof(EFI_HANDLE));
         HandleCount = 1;
@@ -97,8 +97,8 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
             ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID));
             if (!ProtocolBuffer)
             {
-                Print(L"Can not allocate memory, %r\n", Status);
-                return Status;
+                Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
+                return EFI_OUT_OF_RESOURCES;
             }
             CopyMem(InputGuid, ProtocolBuffer, sizeof(EFI_GUID));
             ProtocolCount = 1;
