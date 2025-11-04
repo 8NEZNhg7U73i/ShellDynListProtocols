@@ -28,7 +28,7 @@ STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
 EFI_STATUS
 EFIAPI
-EFIDynCmdProtocolLpHandler(IN EFI_HANDLE InputHandle OPTIONAL, IN EFI_GUID InputGuid OPTIONAL)
+EFIDynCmdProtocolLpHandler(IN VOID InputHandle OPTIONAL, IN EFI_GUID InputGuid OPTIONAL)
 {
     //EFI_SYSTEM_TABLE  *SystemTable;
     //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
