@@ -201,7 +201,7 @@ EFIDynListProtocolsEntryPoint (
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount = 0;
     CHAR16 *ParamStr = NULL;
-    UINT64 *ParamInt = AllocatePool(sizeof(UINT64));
+    UINT64 *ParamInt = NULL;
 
     Status = ShellInitialize();
 
@@ -226,6 +226,7 @@ EFIDynListProtocolsEntryPoint (
         {
             ParamStr = ShellParameters->Argv[i];
             Print(L"ShellParameter arg [%d]: %s\n", i, ParamStr);
+            ParamInt = AllocatePool(sizeof(UINT64));
             Status = ShellConvertStringToUint64(ParamStr, ParamInt, FALSE, TRUE);
             if (!EFI_ERROR(Status))
             {
@@ -236,6 +237,7 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg [%d] is not vaild hex text, %r\n", i, Status);
             }
+            Freepool(ParamInt);
         }
     }
     /*
