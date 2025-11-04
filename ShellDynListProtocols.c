@@ -45,7 +45,7 @@ EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL)
     UINTN OpenInfoCount;
     UINTN OpenInfoIndex;
 
-    if (!InputHandle)
+    if (InputHandle)
     {
         Print(L"EFI_HANDLE: %08X, value: %08X\n", InputHandle, *InputHandle);
         HandleBuffer = InputHandle;
