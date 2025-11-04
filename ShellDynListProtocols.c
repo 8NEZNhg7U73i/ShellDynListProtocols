@@ -64,7 +64,7 @@ EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL)
 
         if (EFI_ERROR(Status))
         {
-            DEBUG((EFI_D_ERROR, "LocateHandleBuffer failed %r\n", Status));
+            Print(L"LocateHandleBuffer failed %r\n", Status);
             return EFI_ABORTED;
         }
     }
@@ -77,7 +77,7 @@ EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL)
             &ProtocolCount);
         if (EFI_ERROR(Status))
         {
-            DEBUG((EFI_D_ERROR, "ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status));
+            Print(L"ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status);
             gBS->FreePool(HandleBuffer);
             return EFI_ABORTED;
         }
