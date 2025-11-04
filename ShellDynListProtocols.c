@@ -14,8 +14,11 @@
 #include <Library/DevicePathLib.h>
 #include "ShellDynListProtocols.h"
 #include <Library/MemoryAllocationLib.h>
-
 #include <Library/ShellLib.h>
+#include <Uefi.h>
+#include <Library/UefiBootServicesTableLib.h>
+#include <Library/UefiLib.h>
+
 /**
   GUID definitions
 **/
@@ -49,7 +52,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
     {
         Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandle, *InputHandle);
         Print(L"EFI_GUID: %p, value:%g\n", InputGuid, *InputGuid);
-        HandleBuffer = InputHandle;
+        CopyMem(InputHandle, HandleBuffer, sizeof(EFI_HANDLE));
         HandleCount = 1;
     }
     else
@@ -73,7 +76,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
     {
         if (InputGuid)
         {
-            ProtocolBuffer = &InputGuid;
+            CopyMem(InputGuid, ProtocolBuffer, sizeof(EFI_GUID));
             ProtocolCount = 1;
         }
         else
