@@ -229,7 +229,7 @@ EFIDynListProtocolsEntryPoint (
             Status = ShellConvertStringToUint64(ParamStr, ParamInt, FALSE, TRUE);
             if (!EFI_ERROR(Status))
             {
-                Print(L"arg %d is vaild hex text, %08X, Pointer location: %p\n", i, *, ParamInt);
+                Print(L"arg %d is vaild hex text, %08X, Pointer location: %p\n", i, *ParamInt, ParamInt);
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt, &gEfiDevicePathProtocolGuid);
                 Print(L"EFIDynCmdProtocolLpHandler: %r\n", EFIDynCmdProtocolLpHandler);
             }
