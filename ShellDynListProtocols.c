@@ -19,6 +19,28 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 
+#include <Uefi.h>
+#include <Guid/Gpt.h>
+#include <Library/UefiLib.h>
+#include <Protocol/DevicePathFromText.h>
+#include <Protocol/DevicePathToText.h>
+#include <Protocol/DevicePathUtilities.h>
+#include <Protocol/LoadedImage.h>
+#include <Protocol/SimpleFileSystem.h>
+#include <Protocol/ShellParameters.h>
+#include <Protocol/BlockIo.h>
+#include <Protocol/PartitionInfo.h>
+
+#include <Uefi.h>
+#include <Library/BaseMemoryLib.h>
+#include <Library/DevicePathLib.h>
+#include <Library/MemoryAllocationLib.h>
+#include <Library/PrintLib.h>
+#include <Library/UefiLib.h>
+#include <Protocol/BlockIo.h>
+#include <Library/UefiApplicationEntryPoint.h>
+#include <Library/ShellLib.h>
+
 /**
   GUID definitions
 **/
