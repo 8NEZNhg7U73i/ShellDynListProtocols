@@ -120,7 +120,8 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
         for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
         {
             Print(L"ProtocolIndex: %d\n", ProtocolIndex);
-            Print(L"%X, %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
+            Print(L"%X\n", HandleBuffer[HandleIndex]);
+            Print(L"%p\n", , ProtocolBuffer[ProtocolIndex]);
             Status = gBS->OpenProtocolInformation(HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
             if (!EFI_ERROR(Status))
             {
