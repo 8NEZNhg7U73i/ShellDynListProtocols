@@ -28,7 +28,7 @@ STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
 EFI_STATUS
 EFIAPI
-EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL)
+EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL, EFI_GUID *InputGuid OPTIONAL)
 {
     //EFI_SYSTEM_TABLE  *SystemTable;
     //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
@@ -71,15 +71,23 @@ EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL)
     // 2nd interate handles and get+print all protocols
     for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
     {
-        Status = gBS->ProtocolsPerHandle(
-            HandleBuffer[HandleIndex],
-            &ProtocolBuffer,
-            &ProtocolCount);
-        if (EFI_ERROR(Status))
+        if (InputGuid)
         {
-            Print(L"ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status);
-            gBS->FreePool(HandleBuffer);
-            return EFI_ABORTED;
+            ProtocolBuffer = InputGuid;
+            ProtocolCount = 1;
+        }
+        else
+        {
+            Status = gBS->ProtocolsPerHandle(
+                HandleBuffer[HandleIndex],
+                &ProtocolBuffer,
+                &ProtocolCount);
+            if (EFI_ERROR(Status))
+            {
+                Print(L"ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status);
+                gBS->FreePool(HandleBuffer);
+                return EFI_ABORTED;
+            }
         }
 
         DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
@@ -223,7 +231,7 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg [%d] is vaild hex text, %08X\n", i, *ParamInt);
                 Print(L"arg [%d] is vaild hex text, %d\n", i, *ParamInt);
-                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt);
+                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt, NULL);
                 Print(L"EFIDynCmdProtocolLpHandler: %r\n", EFIDynCmdProtocolLpHandler);
             }
             else 
