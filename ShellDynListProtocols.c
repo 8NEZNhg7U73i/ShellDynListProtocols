@@ -28,13 +28,13 @@ STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
 EFI_STATUS
 EFIAPI
-EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *InputGuid OPTIONAL)
+EFIDynCmdProtocolLpHandler(IN VOID InputHandle, IN EFI_GUID InputGuid OPTIONAL)
 {
     //EFI_SYSTEM_TABLE  *SystemTable;
     //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
     EFI_STATUS Status;
     UINTN HandleCount;
-    EFI_HANDLE * HandleBuffer;
+    EFI_HANDLE *HandleBuffer = NULL;
     UINTN HandleIndex;
     UINTN ProtocolCount;
     EFI_GUID ** ProtocolBuffer;
@@ -47,8 +47,8 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
 
     if (InputHandle)
     {
-        Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandle, *InputHandle);
-        Print(L"EFI_GUID: %p, value:%g\n", InputGuid, *InputGuid);
+        Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandle, InputHandle);
+        Print(L"EFI_GUID: %p, value:%g\n", InputGuid, InputGuid);
         HandleBuffer = InputHandle;
         HandleCount = 1;
     }
@@ -71,9 +71,9 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
     // 2nd interate handles and get+print all protocols
     for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
     {
-        if (InputGuid)
+        if (sizeof(InputGuid))
         {
-            ProtocolBuffer = &InputGuid;
+            ProtocolBuffer = &(&InputGuid);
             ProtocolCount = 1;
         }
         else
