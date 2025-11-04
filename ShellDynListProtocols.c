@@ -72,6 +72,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
         }
         Print(L"sizeof(InputHandle): %d\n", sizeof(EFI_HANDLE));
         CopyMem(HandleBuffer, InputHandle, sizeof(EFI_HANDLE));
+        Print(L"EFI_HANDLE: %p, value: %08X\n", HandleBuffer, HandleBuffer);
         HandleCount = 1;
     }
     else
