@@ -47,9 +47,9 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
 
     if (InputHandle)
     {
-        Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandle, *InputHandle);
+        Print(L"EFI_HANDLE: %p, value: %08X\n", *InputHandle, InputHandle);
         Print(L"EFI_GUID: %p, value:%g\n", InputGuid, *InputGuid);
-        HandleBuffer = InputHandle;
+        HandleBuffer = (EFI_HANDLE *)&InputHandle;
         HandleCount = 1;
     }
     else
@@ -201,7 +201,7 @@ EFIDynListProtocolsEntryPoint (
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount = 0;
     CHAR16 *ParamStr = NULL;
-    UINT64 *ParamInt = AllocatePool(sizeof(UINT64));
+    UINT64 *ParamInt =  AllocatePool(sizeof(UINT64));
 
     Status = ShellInitialize();
 
@@ -230,7 +230,7 @@ EFIDynListProtocolsEntryPoint (
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p\n", i, *ParamInt, ParamInt);
-                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt, &gEfiDevicePathProtocolGuid);
+                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)&ParamInt, &gEfiDevicePathProtocolGuid);
             }
             else 
             {
