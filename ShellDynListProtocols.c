@@ -117,25 +117,24 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
             }
         }
 
+        DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
+        if (!(DevicePath == NULL))
+        {
+            StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
+            Print(L"DevicePath: %s\n", StrPath);
+        }
+        else
+        {
+            Print(L"DevicePath is NULL\n");
+        }
+
         for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
         {
-            Print(L"ProtocolIndex: %d\n", ProtocolIndex);
             Status = gBS->OpenProtocolInformation(HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
             if (!EFI_ERROR(Status))
             {
                 if (0 == ProtocolIndex)
                 {
-                    Print(L"ProtocolIndex: %d", ProtocolIndex);
-                    DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
-                    if (!(DevicePath == NULL))
-                    {
-                        StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
-                        Print(L"DevicePath: %s\n", StrPath);
-                    }
-                    else
-                    {
-                        Print(L"DevicePath is NULL\n");
-                    }
                     Print(L"Handle 0X%08X: %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
                 }
                 else
@@ -163,10 +162,6 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
                     // OpenInfo[OpenInfoIndex] is an agent that has opened a protocol
                     //
                 }
-            }
-            else
-            {
-                Print(L"gBS->OpenProtocolInformation: %r\n", Status);
             }
         }
         Print(L"\n");
@@ -232,6 +227,7 @@ EFIDynListProtocolsEntryPoint (
     EFI_STATUS  Status;
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount = 0;
+    CHAR16 *ParamStr = NULL;
     UINT64 *ParamInt = AllocatePool(sizeof(UINT64));
 
     Status = ShellInitialize();
@@ -255,12 +251,14 @@ EFIDynListProtocolsEntryPoint (
         ParamCount = ShellParameters->Argc;
         for (UINTN i = 1; i < ParamCount; i++)
         {
-            Print(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
-            Status = ShellConvertStringToUint64(ShellParameters->Argv[i], ParamInt, TRUE, TRUE);
+            ParamStr = ShellParameters->Argv[i];
+            Print(L"ShellParameter arg [%d]: %s\n", i, ParamStr);
+            Status = ShellConvertStringToUint64(ParamStr, ParamInt, FALSE, TRUE);
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiDevicePathProtocolGuid);
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt, &gEfiDevicePathProtocolGuid);
+                Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiDevicePathProtocolGuid);
             }
             else 
             {
@@ -275,6 +273,5 @@ EFIDynListProtocolsEntryPoint (
             return EFI_LOAD_ERROR;
         }
     */
-    FreePool(ParamInt);
-    return EFI_SUCCESS;
+        return EFI_SUCCESS;
 }
