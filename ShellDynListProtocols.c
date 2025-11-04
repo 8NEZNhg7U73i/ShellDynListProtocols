@@ -21,25 +21,15 @@
 
 #include <Uefi.h>
 #include <Guid/Gpt.h>
-#include <Library/UefiLib.h>
 #include <Protocol/DevicePathFromText.h>
 #include <Protocol/DevicePathToText.h>
 #include <Protocol/DevicePathUtilities.h>
 #include <Protocol/LoadedImage.h>
-#include <Protocol/SimpleFileSystem.h>
 #include <Protocol/ShellParameters.h>
-#include <Protocol/BlockIo.h>
-#include <Protocol/PartitionInfo.h>
 
-#include <Uefi.h>
 #include <Library/BaseMemoryLib.h>
-#include <Library/DevicePathLib.h>
-#include <Library/MemoryAllocationLib.h>
 #include <Library/PrintLib.h>
-#include <Library/UefiLib.h>
-#include <Protocol/BlockIo.h>
 #include <Library/UefiApplicationEntryPoint.h>
-#include <Library/ShellLib.h>
 
 /**
   GUID definitions
@@ -74,6 +64,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
     {
         Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandle, *InputHandle);
         Print(L"EFI_GUID: %p, value:%g\n", InputGuid, *InputGuid);
+        HandleBuffer = AllocatePool(HandleBuffer,sizeof(EFI_HANDLE));
         CopyMem(InputHandle, HandleBuffer, sizeof(EFI_HANDLE));
         HandleCount = 1;
     }
@@ -98,6 +89,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
     {
         if (InputGuid)
         {
+            AllocatePool(ProtocolBuffer,sizeof(EFI_GUID));
             CopyMem(InputGuid, ProtocolBuffer, sizeof(EFI_GUID));
             ProtocolCount = 1;
         }
