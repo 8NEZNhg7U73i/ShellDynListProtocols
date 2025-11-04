@@ -48,12 +48,12 @@ EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL, EFI_GUID *InputGuid
     if (InputHandle)
     {
         Print(L"EFI_HANDLE: %08X, value: %08X\n", InputHandle, *InputHandle);
+        Print(L"EFI_GUID: %08X, value:%G\n", InputGuid, *InputGuid);
         HandleBuffer = InputHandle;
         HandleCount = 1;
     }
     else
     {
-
         // 1st get list of all handles
         Status = gBS->LocateHandleBuffer(
             AllHandles,
