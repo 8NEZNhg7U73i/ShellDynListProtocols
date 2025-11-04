@@ -71,7 +71,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE InputHandle OPTIONAL, IN EFI_GUID Input
     // 2nd interate handles and get+print all protocols
     for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
     {
-        if (InputGuid)
+        if (sizeof(InputGuid))
         {
             ProtocolBuffer = &(&InputGuid);
             ProtocolCount = 1;
