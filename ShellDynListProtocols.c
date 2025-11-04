@@ -62,7 +62,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
 
     if (InputHandle)
     {
-        Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandle, *InputHandle);
+        Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandle, InputHandle);
         Print(L"EFI_GUID: %p, value:%g\n", InputGuid, InputGuid);
         HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE));
         if (!HandleBuffer)
@@ -103,6 +103,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
             }
             Print(L"&InputGuid: %p, InputGuid: %p\n", &InputGuid, InputGuid);
             CopyMem(ProtocolBuffer, &InputGuid, sizeof(EFI_GUID));
+            Print(L"EFI_GUID: %p, value:%g\n", ProtocolBuffer, ProtocolBuffer);
             ProtocolCount = 1;
         }
         else
