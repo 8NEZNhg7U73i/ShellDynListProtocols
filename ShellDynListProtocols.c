@@ -102,7 +102,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
                 return EFI_OUT_OF_RESOURCES;
             }
             Print(L"sizeof(InputGuid): %d\n", sizeof(EFI_GUID));
-            CopyMem(ProtocolBuffer, *InputGuid, sizeof(EFI_GUID));
+            CopyMem(ProtocolBuffer, (VOID*)*InputGuid, sizeof(EFI_GUID));
             ProtocolCount = 1;
         }
         else
