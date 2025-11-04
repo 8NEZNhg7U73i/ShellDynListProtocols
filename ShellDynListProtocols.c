@@ -231,7 +231,7 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg [%d] is vaild hex text, %08X\n", i, *ParamInt);
                 Print(L"arg [%d] is vaild hex text, %d\n", i, *ParamInt);
-                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt, NULL);
+                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt, &gEfiDevicePathProtocolGuid);
                 Print(L"EFIDynCmdProtocolLpHandler: %r\n", EFIDynCmdProtocolLpHandler);
             }
             else 
