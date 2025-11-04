@@ -64,7 +64,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
     {
         Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandle, *InputHandle);
         Print(L"EFI_GUID: %p, value:%g\n", InputGuid, *InputGuid);
-        HandleBuffer = AllocatePool(sizeof(EFI_HANDLE));
+        HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE));
         if (!HandleBuffer)
         {
             Print(L"Can not allocate memory, %r\n", Status);
@@ -94,7 +94,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
     {
         if (InputGuid)
         {
-            ProtocolBuffer = AllocatePool(sizeof(EFI_GUID));
+            ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID));
             if (!ProtocolBuffer)
             {
                 Print(L"Can not allocate memory, %r\n", Status);
