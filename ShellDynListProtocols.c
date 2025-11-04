@@ -237,7 +237,7 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg [%d] is not vaild hex text, %r\n", i, Status);
             }
-            Freepool(ParamInt);
+            FreePool(ParamInt);
         }
     }
     /*
