@@ -49,7 +49,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
     {
         Print(L"EFI_HANDLE: %p, value: %08X\n", *InputHandle, InputHandle);
         Print(L"EFI_GUID: %p, value:%g\n", InputGuid, *InputGuid);
-        HandleBuffer = &InputHandle;
+        HandleBuffer = (EFI_HANDLE *)&InputHandle;
         HandleCount = 1;
     }
     else
