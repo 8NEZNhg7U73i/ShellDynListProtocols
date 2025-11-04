@@ -124,6 +124,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
             {
                 if (0 == ProtocolIndex)
                 {
+                    Print(L"ProtocolIndex: %d", ProtocolIndex);
                     DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
                     if (!(DevicePath == NULL))
                     {
