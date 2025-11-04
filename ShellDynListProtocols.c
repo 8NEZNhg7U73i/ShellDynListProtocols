@@ -73,7 +73,7 @@ EFIDynCmdProtocolLpHandler(EFI_HANDLE *InputHandle OPTIONAL, EFI_GUID *InputGuid
     {
         if (InputGuid)
         {
-            ProtocolBuffer = InputGuid;
+            ProtocolBuffer = &InputGuid;
             ProtocolCount = 1;
         }
         else
