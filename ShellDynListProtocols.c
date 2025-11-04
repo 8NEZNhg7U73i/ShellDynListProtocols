@@ -231,6 +231,7 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p\n", i, *ParamInt, ParamInt);
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE*)ParamInt, &gEfiDevicePathProtocolGuid);
+                Print(L"arg %d is vaild hex text, %08X, Pointer location: %p\n", i, *ParamInt, ParamInt);
             }
             else 
             {
