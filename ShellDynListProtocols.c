@@ -226,7 +226,6 @@ EFIDynListProtocolsEntryPoint (
         {
             ParamStr = ShellParameters->Argv[i];
             Print(L"ShellParameter arg [%d]: %s\n", i, ParamStr);
-            ParamInt =;
             Status = ShellConvertStringToUint64(ParamStr, ParamInt, FALSE, TRUE);
             if (!EFI_ERROR(Status))
             {
