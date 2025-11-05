@@ -172,7 +172,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandle OPTIONAL, IN EFI_GUID *Inp
             }
             else
             {
-                Print(L"gBS->OpenProtocolInformation: %r\n", Status);
+                Print(L"Handle: %X, Guid: %g, gBS->OpenProtocolInformation error: %r\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], Status);
             }
         }
         Print(L"\n");
