@@ -16,6 +16,7 @@
 #include <Library/ShellLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
+#include <Uefi.h>
 
 //extern EFI_BOOT_SERVICES *gBS;
 
