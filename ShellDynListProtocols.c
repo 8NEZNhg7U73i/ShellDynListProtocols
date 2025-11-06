@@ -11,12 +11,14 @@
   WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 
 **/
-#include "ShellDynListProtocols.h"
 #include <Library/DevicePathLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/ShellLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
+
+extern EFI_BOOT_SERVICES *gBS;
+extern EFI_SYSTEM_TABLE *gST;
 
 /**
   GUID definitions
