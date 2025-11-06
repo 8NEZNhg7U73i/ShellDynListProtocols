@@ -18,7 +18,6 @@
 #include <Library/UefiLib.h>
 
 extern EFI_BOOT_SERVICES *gBS;
-extern EFI_SYSTEM_TABLE *gST;
 
 /**
   GUID definitions
