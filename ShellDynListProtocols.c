@@ -16,7 +16,7 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/ShellLib.h>
 #include <Library/BaseMemoryLib.h>
-#include <Library/UefiLib.h> // Print()
+#include <Library/UefiLib.h>
 
 /**
   GUID definitions
