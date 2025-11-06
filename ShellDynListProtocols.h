@@ -16,9 +16,7 @@
 #define __SHELL_DYN_LIST_PROTOCOLS_H__
 
 #include <Uefi.h>
-
 #include <Protocol/ShellDynamicCommand.h>
-
 #include <Library/UefiLib.h> // Print()
 #include <Library/HiiLib.h>
 #include <Library/DebugLib.h>
