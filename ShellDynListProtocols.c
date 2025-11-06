@@ -23,7 +23,6 @@
 
 #include <Library/BaseMemoryLib.h>
 #include <Library/PrintLib.h>
-#include <Library/UefiApplicationEntryPoint.h>
 
 /**
   GUID definitions
