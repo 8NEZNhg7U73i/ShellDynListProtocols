@@ -19,9 +19,6 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 
-#include <Protocol/DevicePathFromText.h>
-#include <Protocol/DevicePathToText.h>
-#include <Protocol/DevicePathUtilities.h>
 #include <Protocol/LoadedImage.h>
 #include <Protocol/ShellParameters.h>
 
