@@ -17,7 +17,6 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/UefiLib.h>
 
 /**
   GUID definitions
