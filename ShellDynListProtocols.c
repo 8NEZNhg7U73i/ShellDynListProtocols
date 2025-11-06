@@ -17,7 +17,7 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiLib.h>
 
-extern EFI_BOOT_SERVICES *gBS;
+//extern EFI_BOOT_SERVICES *gBS;
 
 /**
   GUID definitions
