@@ -246,7 +246,7 @@ EFIDynListProtocolsEntryPoint (
         }
         if (ParamCount == 1 )
         {
-            EFIDynCmdProtocolLpHandler(NULL, NULL);
+            EFIDynCmdProtocolLpHandler(NULL, NULL, 0, 0);
         }
     }
     /*
