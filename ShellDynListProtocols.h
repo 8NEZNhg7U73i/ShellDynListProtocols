@@ -15,7 +15,6 @@
 #ifndef __SHELL_DYN_LIST_PROTOCOLS_H__
 #define __SHELL_DYN_LIST_PROTOCOLS_H__
 
-#include <Library/UefiLib.h> // Print()
 
 /**
 This is the shell command "lp" handler function. This function handles
