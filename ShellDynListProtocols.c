@@ -99,9 +99,8 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
 
         for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
         {
-            Print(L"ProtocolIndex: %d\n", ProtocolIndex);
-            Print(L"%X\n", HandleBuffer[HandleIndex]);
-            Print(L"%g\n", ProtocolBuffer[ProtocolIndex]);
+            Print(L"HandleBuffer[%d]%X\n", HandleIndex, HandleBuffer[HandleIndex]);
+            Print(L"ProtocolBuffer[%d]: %g\n", ProtocolIndex, ProtocolBuffer[ProtocolIndex]);
             Status = gBS->OpenProtocolInformation(HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
             if (!EFI_ERROR(Status))
             {
