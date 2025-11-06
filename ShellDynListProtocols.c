@@ -16,6 +16,7 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/ShellLib.h>
 #include <Library/BaseMemoryLib.h>
+#include <Library/UefiLib.h> // Print()
 
 /**
   GUID definitions
@@ -63,7 +64,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     else
     {
         // 1st get list of all handles
-        Status = LocateHandleBuffer(
+        Status = gBS->LocateHandleBuffer(
             AllHandles,
             NULL,
             NULL,
