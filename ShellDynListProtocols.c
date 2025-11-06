@@ -63,7 +63,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     else
     {
         // 1st get list of all handles
-        Status = gBS->LocateHandleBuffer(
+        Status = LocateHandleBuffer(
             AllHandles,
             NULL,
             NULL,
