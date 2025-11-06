@@ -43,7 +43,7 @@ STATIC EFI_HANDLE mEFIDynListProtocolsHiiHandle;
 
 EFI_STATUS
 EFIAPI
-EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUID *InputProtocolBuffer OPTIONAL, IN UINTN InputHandleCount, IN UINTN InputProtocolCount)
+EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUID **InputProtocolBuffer OPTIONAL, IN UINTN InputHandleCount, IN UINTN InputProtocolCount)
 {
     //EFI_SYSTEM_TABLE  *SystemTable;
     //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
@@ -236,7 +236,7 @@ EFIDynListProtocolsEntryPoint (
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiDevicePathProtocolGuid);
-                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, &gEfiDevicePathProtocolGuid, 1, 1);
+                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, &(&gEfiDevicePathProtocolGuid), 1, 1);
             }
             else 
             {
