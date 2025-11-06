@@ -14,6 +14,7 @@
 #include "ShellDynListProtocols.h"
 #include <Library/DevicePathLib.h>
 #include <Library/MemoryAllocationLib.h>
+#include <Library/BaseMemoryLib.h>
 
 /**
   GUID definitions
