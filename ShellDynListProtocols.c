@@ -19,7 +19,6 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 
-#include <Protocol/ShellParameters.h>
 
 #include <Library/BaseMemoryLib.h>
 #include <Library/PrintLib.h>
