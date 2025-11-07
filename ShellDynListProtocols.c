@@ -222,14 +222,14 @@ EFIDynListProtocolsEntryPoint (
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiPartitionInfoProtocolGuid);
-                EFI_GUID test[10];
+                EFI_GUID test[6];
                 test[0]=gEfiPartitionInfoProtocolGuid;
                 test[1]=gEfiBlockIoProtocolGuid;
                 test[2]=gEfiDevicePathProtocolGuid;
                 test[3]=gEfiBlockIo2ProtocolGuid;
                 test[4]=gEfiDiskIoProtocolGuid;
                 test[5]=gEfiDiskIo2ProtocolGuid;
-                Print(L"sizeof(test[]: %d",sizeof(test));
+                Print(L"sizeof(test[]: %d\n",sizeof(test));
 
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)&test, 1, 6);
             }
