@@ -13,6 +13,10 @@
 **/
 #include <Library/DevicePathLib.h>
 #include <Library/MemoryAllocationLib.h>
+#include <Library/ShellLib.h>
+#include <Library/BaseMemoryLib.h>
+#include <Library/UefiLib.h>
+#include <Library/UefiBootServicesTableLib.h>
 
 EFI_STATUS
 EFIAPI
