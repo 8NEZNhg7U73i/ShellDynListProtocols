@@ -70,6 +70,17 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
             {
                 if (0 == ProtocolIndex)
                 {
+                    Print(L"ProtocolIndex: %d\n", ProtocolIndex);
+                    DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
+                    if (!(DevicePath == NULL))
+                    {
+                        StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
+                        Print(L"DevicePath: %s\n", StrPath);
+                    }
+                    else
+                    {
+                        Print(L"DevicePath is NULL\n");
+                    }
                     Print(L"Handle 0X%08X: %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
                 }
                 else
