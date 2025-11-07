@@ -19,6 +19,7 @@
 #include <Library/UefiLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include "ShellDynListProtocols.h"
+#include <Uefi.h>
 
 EFI_STATUS
 EFIAPI
