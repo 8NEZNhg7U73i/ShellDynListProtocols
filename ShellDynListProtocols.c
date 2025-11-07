@@ -216,7 +216,7 @@ EFIDynListProtocolsEntryPoint (
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X\n", i, *ParamInt);
-                Handle[ParamCount] = (EFI_HANDLE)*ParamInt;
+                Handle[ParamCount] = (EFI_HANDLE *)ParamInt;
             }
             else 
             {
