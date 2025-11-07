@@ -22,8 +22,6 @@ EFI_STATUS
 EFIAPI
 EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUID **InputProtocolBuffer OPTIONAL, IN UINTN InputHandleCount, IN UINTN InputProtocolCount)
 {
-    //EFI_SYSTEM_TABLE  *SystemTable;
-    //EFI_BOOT_SERVICES *gBS = SystemTable->BootServices;
     EFI_STATUS Status;
     UINTN HandleCount;
     EFI_HANDLE * HandleBuffer;
