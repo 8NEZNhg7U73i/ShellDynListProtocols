@@ -85,6 +85,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
              */
             CopyMem(*ProtocolBuffer, *InputProtocolBuffer, sizeof(EFI_GUID) * InputProtocolCount);
             Print(L"&InputProtocolBuffer: %p, InputProtocolBuffer: %g\n", &InputProtocolBuffer, InputProtocolBuffer);
+            Print(L"EFI_GUID: %p, value:%X\n", ProtocolBuffer, ProtocolBuffer);
             Print(L"EFI_GUID: %p, value:%g\n", ProtocolBuffer, ProtocolBuffer);
             ProtocolCount = InputProtocolCount;
         }
