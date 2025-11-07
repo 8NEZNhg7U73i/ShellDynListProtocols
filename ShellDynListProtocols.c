@@ -37,6 +37,16 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
 
     if (InputHandleBuffer)
     {
+        Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandleBuffer, InputHandleBuffer[0]);
+        HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE));
+        if (!HandleBuffer)
+        {
+            Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
+            return EFI_OUT_OF_RESOURCES;
+        }
+        HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE) * InputHandleCount);
+        CopyMem(HandleBuffer, InputHandleBuffer, sizeof(EFI_HANDLE) * InputHandleCount);
+        HandleCount = InputHandleCount;
     }
 
     // 2nd interate handles and get+print all protocols
