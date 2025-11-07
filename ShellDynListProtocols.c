@@ -66,9 +66,11 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
             gBS->FreePool(HandleBuffer);
             return EFI_ABORTED;
         }
-
-        DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
-        if (!(DevicePath == NULL))
+    }
+    // 2nd interate handles and get+print all protocols
+    for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
+    {
+        if (InputProtocolBuffer)
         {
             ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID));
             if (!ProtocolBuffer)
