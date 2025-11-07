@@ -229,8 +229,8 @@ EFIDynListProtocolsEntryPoint (
         }
         else
         {
-            Print(L"ParamInt: %p\n", ParamInt);
-            EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, NULL, ParamCount - 1, 0);
+            Print(L"Handle: %p\n", Handle);
+            EFIDynCmdProtocolLpHandler((EFI_HANDLE *)Handle, NULL, ParamCount - 1, 0);
         }
     }
     /*
