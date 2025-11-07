@@ -37,8 +37,6 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
 
     if (InputHandleBuffer)
     {
-        DEBUG((EFI_D_ERROR, "LocateHandleBuffer failed %r\n", Status));
-        return EFI_ABORTED;
     }
 
     // 2nd interate handles and get+print all protocols
