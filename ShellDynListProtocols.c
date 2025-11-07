@@ -180,6 +180,7 @@ EFIDynListProtocolsEntryPoint (
     EFI_STATUS  Status;
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount;
+    UINTN ParamIndex;
     UINT64 *ParamInt=AllocateZeroPool(sizeof(UINT64));
     EFI_HANDLE *Handle;
 
@@ -203,22 +204,22 @@ EFIDynListProtocolsEntryPoint (
 
         ParamCount = ShellParameters->Argc;
         Handle = AllocateZeroPool(sizeof(EFI_HANDLE) * ParamCount);
-        for (UINTN i = 0; i < ParamCount; i++)
+        for (ParamIndex = 0; ParamIndex < ParamCount; ParamIndex++)
         {
-            if (i = 0)
+            if (ParamIndex = 0)
             {
                 continue;
             }
-            Print(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
-            Status = ShellConvertStringToUint64(ShellParameters->Argv[i], ParamInt, TRUE, TRUE);
+            Print(L"ShellParameter arg [%d]: %s\n", ParamIndex, ShellParameters->Argv[ParamIndex]);
+            Status = ShellConvertStringToUint64(ShellParameters->Argv[ParamIndex], ParamInt, TRUE, TRUE);
             if (!EFI_ERROR(Status))
             {
-                Print(L"arg %d is vaild hex text, %08X\n", i, *ParamInt);
-                Handle[i] = *(EFI_HANDLE *)ParamInt;
+                Print(L"arg %d is vaild hex text, %08X\n", ParamIndex, *ParamInt);
+                Handle[ParamIndex] = *(EFI_HANDLE *)ParamInt;
             }
             else 
             {
-                Print(L"arg [%d] is not vaild hex text, %r\n", i, Status);
+                Print(L"arg [%d] is not vaild hex text, %r\n", ParamIndex, Status);
             }
         }
         if (ParamCount == 1)
