@@ -19,7 +19,6 @@
 #include <Library/UefiLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include "ShellDynListProtocols.h"
-#include <Uefi.h>
 
 EFI_STATUS
 EFIAPI
@@ -223,7 +222,8 @@ EFIDynListProtocolsEntryPoint (
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiPartitionInfoProtocolGuid);
-                EFI_GUID test[3] = {gEfiPartitionInfoProtocolGuid};
+                EFI_GUID test[3];
+                test[0]=gEfiPartitionInfoProtocolGuid;
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)&test, 1, 6);
             }
             else 
