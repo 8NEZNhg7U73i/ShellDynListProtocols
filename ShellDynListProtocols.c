@@ -147,8 +147,10 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     }
     gBS->FreePool(StrPath);
     gBS->FreePool(OpenInfo);
+    Print(L"ProtocolBuffer: %p\n", ProtocolBuffer);
     gBS->FreePool(ProtocolBuffer);
 
+    Print(L"HandleBuffer: %p\n", HandleBuffer);
     gBS->FreePool(HandleBuffer);
 
     return EFI_SUCCESS;
