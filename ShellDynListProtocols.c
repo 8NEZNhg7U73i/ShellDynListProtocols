@@ -232,23 +232,23 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiDevicePathProtocolGuid);
                 EFI_GUID* test[6];
-                test[0]=&gEfiPartitionInfoProtocolGuid;
-                test[1]=&gEfiBlockIoProtocolGuid;
-                test[2]=&gEfiDevicePathProtocolGuid;
-                test[3]=&gEfiBlockIo2ProtocolGuid;
-                test[4]=&gEfiDiskIoProtocolGuid;
-                test[5]=&gEfiDiskIo2ProtocolGuid;
+                test[0]=&gEfiBlockIoProtocolGuid;
+                test[1]=&gEfiPartitionInfoProtocolGuid;
+                test[2]=&gEfiBlockIo2ProtocolGuid;
+                test[3]=&gEfiDiskIoProtocolGuid;
+                test[4]=&gEfiDiskIo2ProtocolGuid;
+                test[5]=&gEfiDevicePathProtocolGuid;
                 Print(L"sizeof(test[]): %d\n",sizeof(test));
-                Print(L"gEfiPartitionInfoProtocolGuid: %g\n", test[0]);
-                Print(L"gEfiBlockIoProtocolGuid: %g\n", test[1]);
+                Print(L"gEfiBlockIoProtocolGuid: %g\n", test[0]);
+                Print(L"gEfiPartitionInfoProtocolGuid: %g\n", test[1]);
                 EFI_GUID *test1 = (EFI_GUID *)test;
                 Print(L"sizeof(test1[]): %d\n",sizeof(test1));
-                Print(L"gEfiDevicePathProtocolGuid: %g\n", test1[2]);
-                Print(L"gEfiBlockIo2ProtocolGuid: %g\n", test1[3]);
+                Print(L"gEfiBlockIo2ProtocolGuid: %g\n", test1[2]);
+                Print(L"gEfiDiskIoProtocolGuid: %g\n", test1[3]);
                 EFI_GUID **test2 = (EFI_GUID **)&test1;
                 Print(L"sizeof(test2[]): %d\n",sizeof(test2));
-                Print(L"gEfiDiskIoProtocolGuid: %g\n", (*test2)[4]);
-                Print(L"gEfiDiskIo2ProtocolGuid: %g\n", (*test2)[5]);
+                Print(L"gEfiDiskIo2ProtocolGuid: %g\n", (*test2)[4]);
+                Print(L"gEfiDevicePathProtocolGuid: %g\n", (*test2)[5]);
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)test1, 1, 6);
             }
             else 
