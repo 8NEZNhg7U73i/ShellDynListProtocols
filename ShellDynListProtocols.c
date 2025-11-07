@@ -43,12 +43,6 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
             Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
             return EFI_OUT_OF_RESOURCES;
         }
-        Print(L"InputHandleBuffer: %p\n", InputHandleBuffer);
-        Print(L"InputHandleBuffer: %08X\n", *InputHandleBuffer);
-        Print(L"HandleBuffer: %p\n", HandleBuffer);
-        Print(L"0: %p\n", InputHandleBuffer[0]);
-        Print(L"1: %p\n", InputHandleBuffer[1]);
-        //HandleBuffer = InputHandleBuffer;
         CopyMem(HandleBuffer, InputHandleBuffer, sizeof(EFI_HANDLE) * InputHandleCount);
         HandleCount = InputHandleCount;
     }
@@ -150,10 +144,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     }
     gBS->FreePool(StrPath);
     gBS->FreePool(OpenInfo);
-    Print(L"ProtocolBuffer: %p\n", ProtocolBuffer);
     gBS->FreePool(ProtocolBuffer);
-
-    Print(L"HandleBuffer: %p\n", HandleBuffer);
     gBS->FreePool(HandleBuffer);
 
     return EFI_SUCCESS;
@@ -202,33 +193,35 @@ EFIDynListProtocolsEntryPoint (
         if (EFI_ERROR(Status))
         {
             Print(L"Open EFI_SHELL_PARAMETERS_PROTOCOL protocol failed: %r\n", Status);
-            return Status;
+            ParamCount = 1;
+            EFIDynCmdProtocolLpHandler(NULL, NULL, 0, 0);
+        }
+        else
+        {
+            ParamCount = ShellParameters->Argc;
+            Handle = AllocateZeroPool(sizeof(EFI_HANDLE) * ParamCount);
         }
 
-        ParamCount = ShellParameters->Argc;
-        Handle = AllocateZeroPool(sizeof(EFI_HANDLE) * ParamCount);
         for (ParamIndex = 1; ParamIndex < ParamCount; ParamIndex++)
         {
-            Print(L"ShellParameter arg [%d]: %s\n", ParamIndex, ShellParameters->Argv[ParamIndex]);
             Status = ShellConvertStringToUint64(ShellParameters->Argv[ParamIndex], ParamInt, TRUE, TRUE);
             if (!EFI_ERROR(Status))
             {
-                Print(L"arg %d is vaild hex text, %08X\n", ParamIndex, *ParamInt);
+                Print(L"arg [%d] is vaild hex text, %08X\n", ParamIndex, *ParamInt);
                 Handle[ParamIndex - 1] = *(EFI_HANDLE *)ParamInt;
-                Print(L"Handle[ParamIndex]: %08X, %p\n", Handle[ParamIndex], &Handle[ParamIndex]);
             }
             else 
             {
                 Print(L"arg [%d] is not vaild hex text, %r\n", ParamIndex, Status);
             }
         }
+
         if (ParamCount == 1)
         {
             EFIDynCmdProtocolLpHandler(NULL, NULL, 0, 0);
         }
         else
         {
-            Print(L"Handle: %p\n", Handle);
             EFIDynCmdProtocolLpHandler((EFI_HANDLE *)Handle, NULL, ParamCount - 1, 0);
         }
     }
