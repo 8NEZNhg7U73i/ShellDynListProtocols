@@ -216,6 +216,7 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg %d is vaild hex text, %08X\n", ParamIndex, *ParamInt);
                 Handle[ParamIndex] = *(EFI_HANDLE *)ParamInt;
+                Print(L"Handle[ParamIndex]: %08X, %p\n", Handle[ParamIndex], Handle[ParamIndex]);
             }
             else 
             {
