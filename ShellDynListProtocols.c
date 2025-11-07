@@ -37,13 +37,13 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
 
     if (InputHandleBuffer && InputHandleCount > 0)
     {
-        HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE) * InputHandleCount);
+        HandleBuffer = &AllocateZeroPool(sizeof(EFI_HANDLE) * InputHandleCount);
         if (!HandleBuffer)
         {
             Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
             return EFI_OUT_OF_RESOURCES;
         }
-        CopyMem(HandleBuffer, InputHandleBuffer, sizeof(EFI_HANDLE) * InputHandleCount);
+        CopyMem(*HandleBuffer, *InputHandleBuffer, sizeof(EFI_HANDLE) * InputHandleCount);
         HandleCount = InputHandleCount;
     }
     else
