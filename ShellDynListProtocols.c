@@ -37,7 +37,6 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
 
     if (InputHandleBuffer && InputHandleCount > 0)
     {
-        Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandleBuffer, InputHandleBuffer[0]);
         HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE));
         if (!HandleBuffer)
         {
