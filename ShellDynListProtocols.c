@@ -80,6 +80,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
             }
             Print(L"InputProtocolBuffer: %g\n", (InputProtocolBuffer));
             Print(L"*InputProtocolBuffer1: %g\n", (*InputProtocolBuffer)[1]);
+            Print(L"*InputProtocolBuffer2: %g\n", (*InputProtocolBuffer)[2]);
             Print(L"*InputProtocolBuffer3: %g\n", (*InputProtocolBuffer)[3]);
             /**
              * @var		mixed	*ProtocolBuffer
