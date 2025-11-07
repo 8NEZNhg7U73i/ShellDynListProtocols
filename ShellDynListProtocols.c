@@ -138,6 +138,7 @@ EFIDynListProtocolsEntryPoint (
 
     Status = ShellInitialize();
 
+    if (!EFI_ERROR(Status) && gEfiShellProtocol)
     {
     }
     return EFI_SUCCESS;
