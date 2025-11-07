@@ -66,7 +66,6 @@ EFIDynCmdProtocolLpHandler()
         }
         else
         {
-            Print(L"DevicePath is NULL\n");
         }
 
         for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
