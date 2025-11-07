@@ -78,7 +78,9 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                 Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
                 return EFI_OUT_OF_RESOURCES;
             }
-            Print(L"InputProtocolBuffer: %p, InputProtocolBuffer: %g\n", InputProtocolBuffer, *InputProtocolBuffer[3]);
+            Print(L"InputProtocolBuffer: %p\n", InputProtocolBuffer);
+            Print(L"InputProtocolBuffer: %p\n", InputProtocolBuffer[3]);
+            Print(L"InputProtocolBuffer: %g\n", *InputProtocolBuffer[3]);
             /**
              * @var		mixed	*ProtocolBuffer
              *//**
