@@ -208,18 +208,14 @@ EFIDynListProtocolsEntryPoint (
 
         ParamCount = ShellParameters->Argc;
         Handle = AllocateZeroPool(sizeof(EFI_HANDLE) * ParamCount);
-        for (ParamIndex = 0; ParamIndex < ParamCount; ParamIndex++)
+        for (ParamIndex = 1; ParamIndex < ParamCount; ParamIndex++)
         {
-            if (ParamIndex == 0)
-            {
-                continue;
-            }
             Print(L"ShellParameter arg [%d]: %s\n", ParamIndex, ShellParameters->Argv[ParamIndex]);
             Status = ShellConvertStringToUint64(ShellParameters->Argv[ParamIndex], ParamInt, TRUE, TRUE);
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X\n", ParamIndex, *ParamInt);
-                Handle[ParamIndex] = *(EFI_HANDLE *)ParamInt;
+                Handle[ParamIndex - 1] = *(EFI_HANDLE *)ParamInt;
                 Print(L"Handle[ParamIndex]: %08X, %p\n", Handle[ParamIndex], &Handle[ParamIndex]);
             }
             else 
