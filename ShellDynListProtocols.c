@@ -95,7 +95,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
             Status = gBS->OpenProtocolInformation(HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex], &OpenInfo, &OpenInfoCount);
             if (!EFI_ERROR(Status))
             {
-                if (0 == ProtocolIndex)
+                if (ProtocolIndex == 0)
                 {
                     DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
                     if (!(DevicePath == NULL))
