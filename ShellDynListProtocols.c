@@ -205,7 +205,7 @@ EFIDynListProtocolsEntryPoint (
         Handle = AllocateZeroPool(sizeof(EFI_HANDLE) * ParamCount);
         for (UINTN i = 0; i < ParamCount; i++)
         {
-            if (UINTN = 0)
+            if (i = 0)
             {
                 continue;
             }
