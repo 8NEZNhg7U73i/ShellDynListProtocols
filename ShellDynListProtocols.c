@@ -231,6 +231,7 @@ EFIDynListProtocolsEntryPoint (
                 test[5]=gEfiDiskIo2ProtocolGuid;
                 Print(L"sizeof(test[]: %d\n",sizeof(test));
                 Print(L"gEfiDiskIo2ProtocolGuid: %g\n", test[5]);
+                Print(L"gEfiDiskIo2ProtocolGuid: %g\m", &test[5]);
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)&test, 1, 6);
             }
             else 
