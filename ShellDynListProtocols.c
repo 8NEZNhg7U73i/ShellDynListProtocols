@@ -79,8 +79,8 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                 return EFI_OUT_OF_RESOURCES;
             }
             Print(L"InputProtocolBuffer: %p\n", InputProtocolBuffer);
-            Print(L"InputProtocolBuffer: %p\n", InputProtocolBuffer[3]);
-            Print(L"InputProtocolBuffer: %g\n", *InputProtocolBuffer[3]);
+            Print(L"InputProtocolBuffer: %p\n", InputProtocolBuffer[5]);
+            Print(L"InputProtocolBuffer: %g\n", *InputProtocolBuffer[5]);
             /**
              * @var		mixed	*ProtocolBuffer
              *//**
@@ -234,6 +234,7 @@ EFIDynListProtocolsEntryPoint (
                 Print(L"sizeof(test[]: %d\n",sizeof(test));
                 Print(L"gEfiDiskIo2ProtocolGuid: %g\n", test[5]);
                 Print(L"gEfiDiskIo2ProtocolGuid: %g\n", &test[5]);
+                Print(L"&test: %p\n", &test);
                 Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)&test, 1, 6);
             }
             else 
