@@ -140,6 +140,39 @@ EFIDynListProtocolsEntryPoint (
 
     if (!EFI_ERROR(Status) && gEfiShellProtocol)
     {
+        Status = gBS->OpenProtocol(
+            ImageHandle,
+            &gEfiShellParametersProtocolGuid,
+            (VOID **)&ShellParameters,
+            ImageHandle,
+            NULL,
+            EFI_OPEN_PROTOCOL_GET_PROTOCOL);
+
+        if (EFI_ERROR(Status))
+        {
+            Print(L"Open EFI_SHELL_PARAMETERS_PROTOCOL protocol failed: %r\n", Status);
+            return Status;
+        }
+
+        ParamCount = ShellParameters->Argc;
+        for (UINTN i = 1; i < ParamCount; i++)
+        {
+            Print(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
+            Status = ShellConvertStringToUint64(ShellParameters->Argv[i], ParamInt, TRUE, TRUE);
+            if (!EFI_ERROR(Status))
+            {
+                Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiDevicePathProtocolGuid);
+                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)test1, 1, 6);
+            }
+            else 
+            {
+                Print(L"arg [%d] is not vaild hex text, %r\n", i, Status);
+            }
+        }
+        if (ParamCount == 1 )
+        {
+            EFIDynCmdProtocolLpHandler(NULL, NULL, 0, 0);
+        }
     }
     return EFI_SUCCESS;
 }
