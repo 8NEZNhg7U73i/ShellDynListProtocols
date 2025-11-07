@@ -186,7 +186,7 @@ EFIDynListProtocolsEntryPoint (
     EFI_STATUS  Status;
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount;
-    UINT64 *ParamInt=AllocateZerPool(sizeof(UINT64));
+    UINT64 *ParamInt=AllocateZeroPool(sizeof(UINT64));
     EFI_HANDLE *Handle;
 
     Status = ShellInitialize();
