@@ -203,8 +203,12 @@ EFIDynListProtocolsEntryPoint (
 
         ParamCount = ShellParameters->Argc;
         Handle = AllocateZeroPool(sizeof(EFI_HANDLE) * ParamCount);
-        for (UINTN i = 1; i < ParamCount; i++)
+        for (UINTN i = 0; i < ParamCount; i++)
         {
+            if (UINTN = 0)
+            {
+                continue;
+            }
             Print(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
             Status = ShellConvertStringToUint64(ShellParameters->Argv[i], ParamInt, TRUE, TRUE);
             if (!EFI_ERROR(Status))
