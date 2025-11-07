@@ -35,7 +35,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     UINTN OpenInfoCount;
     UINTN OpenInfoIndex;
 
-    if (InputHandleBuffer)
+    if (InputHandleBuffer && InputHandleCount > 0)
     {
         Print(L"EFI_HANDLE: %p, value: %08X\n", InputHandleBuffer, InputHandleBuffer[0]);
         HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE));
@@ -67,7 +67,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     // 2nd interate handles and get+print all protocols
     for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
     {
-        if (InputProtocolBuffer)
+        if (InputProtocolBuffer && InputProtocolCount > 0)
         {
             ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID));
             if (!ProtocolBuffer)
@@ -187,6 +187,7 @@ EFIDynListProtocolsEntryPoint (
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount;
     UINT64 *ParamInt;
+    EFI_GUID *Handle;
 
     Status = ShellInitialize();
 
@@ -207,6 +208,7 @@ EFIDynListProtocolsEntryPoint (
         }
 
         ParamCount = ShellParameters->Argc;
+        Handle = AllocateZeroPool(sizeof(EFI_HANDLE) * ParamCount);
         for (UINTN i = 1; i < ParamCount; i++)
         {
             Print(L"ShellParameter arg [%d]: %s\n", i, ShellParameters->Argv[i]);
@@ -214,19 +216,20 @@ EFIDynListProtocolsEntryPoint (
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X\n", i, *ParamInt);
+                Handle[ParamCount] = *ParamInt;
             }
             else 
             {
                 Print(L"arg [%d] is not vaild hex text, %r\n", i, Status);
             }
         }
-        if (ParamCount == 1 )
+        if (ParamCount == 1)
         {
             EFIDynCmdProtocolLpHandler(NULL, NULL, 0, 0);
         }
         else
         {
-            EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)test1, 1, 6);
+            EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, NULL, 1, 6);
         }
     }
     /*
