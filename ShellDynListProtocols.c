@@ -226,12 +226,12 @@ EFIDynListProtocolsEntryPoint (
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiPartitionInfoProtocolGuid);
                 EFI_GUID test[6];
-                test[0]=gEfiPartitionInfoProtocolGuid;
-                test[1]=gEfiBlockIoProtocolGuid;
-                test[2]=gEfiDevicePathProtocolGuid;
-                test[3]=gEfiBlockIo2ProtocolGuid;
-                test[4]=gEfiDiskIoProtocolGuid;
-                test[5]=gEfiDiskIo2ProtocolGuid;
+                test[0]=&gEfiPartitionInfoProtocolGuid;
+                test[1]=&gEfiBlockIoProtocolGuid;
+                test[2]=&gEfiDevicePathProtocolGuid;
+                test[3]=&gEfiBlockIo2ProtocolGuid;
+                test[4]=&gEfiDiskIoProtocolGuid;
+                test[5]=&gEfiDiskIo2ProtocolGuid;
                 Print(L"sizeof(test[]): %d\n",sizeof(test));
                 Print(L"gEfiPartitionInfoProtocolGuid: %g\n", test[0]);
                 Print(L"gEfiBlockIoProtocolGuid: %g\n", &test[1]);
