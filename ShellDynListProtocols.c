@@ -44,7 +44,9 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
             return EFI_OUT_OF_RESOURCES;
         }
         Print(L"InputHandleBuffer: %p\n", InputHandleBuffer);
+        Print(L"InputHandleBuffer: %08X\n", InputHandleBuffer);
         Print(L"HandleBuffer: %p\n", HandleBuffer);
+        Print(L"0: %08X\n", InputHandleBuffer[0]);
         HandleBuffer = InputHandleBuffer;
         //CopyMem(HandleBuffer, InputHandleBuffer, sizeof(EFI_HANDLE) * InputHandleCount);
         HandleCount = InputHandleCount;
