@@ -199,5 +199,13 @@ EFIDynListProtocolsEntryPoint (
             EFIDynCmdProtocolLpHandler(NULL, NULL, 0, 0);
         }
     }
+    /*
+        Status = EFIDynCmdProtocolLpHandler(NULL);
+        if (!EFI_ERROR (Status))
+        {
+            return EFI_LOAD_ERROR;
+        }
+    */
+    FreePool(ParamInt);
     return EFI_SUCCESS;
 }
