@@ -44,6 +44,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
             Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
             return EFI_OUT_OF_RESOURCES;
         }
+        HandleBuffer = AllocateZeroPool(sizeof(EFI_HANDLE) * InputHandleCount);
         CopyMem(HandleBuffer, InputHandleBuffer, sizeof(EFI_HANDLE) * InputHandleCount);
         Print(L"EFI_HANDLE: %p, value: %08X\n", HandleBuffer, HandleBuffer);
         HandleCount = InputHandleCount;
@@ -83,6 +84,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
              *//**
              * @var		*	InputProtocolCount)
              */
+            ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID) * InputProtocolCount);
             CopyMem(*ProtocolBuffer, *InputProtocolBuffer, sizeof(EFI_GUID) * InputProtocolCount);
             Print(L"&InputProtocolBuffer: %p, InputProtocolBuffer: %g\n", &InputProtocolBuffer, InputProtocolBuffer);
             Print(L"EFI_GUID: %p, value:%X\n", ProtocolBuffer, ProtocolBuffer);
@@ -218,7 +220,8 @@ EFIDynListProtocolsEntryPoint (
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiDevicePathProtocolGuid);
-                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, &(&gEfiDevicePathProtocolGuid), 1, 1);
+
+                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, &{&gEfiDevicePathProtocolGuid, &gEfiBlockIoProtocolGuid, &gEfiPartitionInfoProtocolGuid, &gEfiBlockIo2ProtocolGuid, &gEfiDiskIoProtocolGuid, &gEfiDiskIo2ProtocolGuid}, 1, 6);
             }
             else 
             {
