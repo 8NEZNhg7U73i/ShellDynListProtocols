@@ -78,9 +78,9 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                 Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
                 return EFI_OUT_OF_RESOURCES;
             }
-            Print(L"InputProtocolBuffer: %gp\n", (*InputProtocolBuffer));
-            Print(L"InputProtocolBuffer: %g\n", (*InputProtocolBuffer)[1]);
-            Print(L"InputProtocolBuffer: %g\n", (*InputProtocolBuffer)[3]);
+            Print(L"InputProtocolBuffer: %gp\n", (InputProtocolBuffer));
+            Print(L"InputProtocolBuffer: %g\n", (InputProtocolBuffer)[1]);
+            Print(L"InputProtocolBuffer: %g\n", (InputProtocolBuffer)[3]);
             /**
              * @var		mixed	*ProtocolBuffer
              *//**
@@ -90,7 +90,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
              */
             ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID) * InputProtocolCount);
             CopyMem(*ProtocolBuffer, *InputProtocolBuffer, sizeof(EFI_GUID) * InputProtocolCount);
-            Print(L"&InputProtocolBuffer: %p, InputProtocolBuffer: %g\n", &InputProtocolBuffer, (*InputProtocolBuffer)[5]);
+            Print(L"&InputProtocolBuffer: %p, InputProtocolBuffer: %g\n", &InputProtocolBuffer, (InputProtocolBuffer)[5]);
             Print(L"EFI_GUID: %p, value:%X\n", ProtocolBuffer, ProtocolBuffer);
             Print(L"EFI_GUID: %p, value:%g\n", ProtocolBuffer, ProtocolBuffer);
             ProtocolCount = InputProtocolCount;
@@ -242,7 +242,7 @@ EFIDynListProtocolsEntryPoint (
                 Print(L"sizeof(test2[]): %d\n",sizeof(test2));
                 Print(L"gEfiDiskIoProtocolGuid: %g\n", (*test2)[4]);
                 Print(L"gEfiDiskIo2ProtocolGuid: %g\n", (*test2)[5]);
-                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)test2, 1, 6);
+                Status = EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, (EFI_GUID **)test1, 1, 6);
             }
             else 
             {
