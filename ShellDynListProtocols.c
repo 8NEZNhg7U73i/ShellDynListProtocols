@@ -42,7 +42,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
         NULL,
         &HandleCount,
         &HandleBuffer);
-    if (EFI_ERROR(Status))
+    if (InputHandleBuffer)
     {
         DEBUG((EFI_D_ERROR, "LocateHandleBuffer failed %r\n", Status));
         return EFI_ABORTED;
