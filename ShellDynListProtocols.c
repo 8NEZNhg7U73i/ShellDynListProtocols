@@ -221,7 +221,7 @@ EFIDynListProtocolsEntryPoint (
             if (!EFI_ERROR(Status))
             {
                 Print(L"arg %d is vaild hex text, %08X, Pointer location: %p, GUID: %g\n", i, *ParamInt, ParamInt, gEfiPartitionInfoProtocolGuid);
-                EFI_GUID test[] = {
+                EFI_GUID test[3] = {
                     {0x12345678, 0x9abc, 0x4def, {0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef}},   // First GUID
                     {0x23456789, 0xabcdef, 0x5fed, {0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc, 0xde, 0xf0}}, // Second GUID
                     {0x34567890, 0x1234, 0x6789, {0xab, 0xcd, 0xef, 0x01, 0x23, 0x45, 0x67, 0x89}}    // Third GUID
