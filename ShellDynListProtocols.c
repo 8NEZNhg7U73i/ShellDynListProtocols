@@ -219,7 +219,7 @@ EFIDynListProtocolsEntryPoint (
         }
         else
         {
-            EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, NULL, ParamCounts, 0);
+            EFIDynCmdProtocolLpHandler((EFI_HANDLE *)ParamInt, NULL, ParamCount, 0);
         }
     }
     /*
