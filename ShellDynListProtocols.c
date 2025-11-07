@@ -48,9 +48,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
         CopyMem(HandleBuffer, InputHandleBuffer, sizeof(EFI_HANDLE) * InputHandleCount);
         HandleCount = InputHandleCount;
     }
-
-    // 2nd interate handles and get+print all protocols
-    for (HandleIndex = 0; HandleIndex < HandleCount; HandleIndex++)
+    else
     {
         // 1st get list of all handles
         Status = gBS->LocateHandleBuffer(
