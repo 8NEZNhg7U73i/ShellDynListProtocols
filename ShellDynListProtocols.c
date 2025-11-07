@@ -61,6 +61,16 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
         }
         else
         {
+            Status = gBS->ProtocolsPerHandle(
+                HandleBuffer[HandleIndex],
+                &ProtocolBuffer,
+                &ProtocolCount);
+            if (EFI_ERROR(Status))
+            {
+                Print(L"ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status);
+                gBS->FreePool(HandleBuffer);
+                return EFI_ABORTED;
+            }
         }
 
         for (ProtocolIndex = 0; ProtocolIndex < ProtocolCount; ProtocolIndex++)
