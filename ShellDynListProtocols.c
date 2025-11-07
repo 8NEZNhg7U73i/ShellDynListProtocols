@@ -234,11 +234,11 @@ EFIDynListProtocolsEntryPoint (
                 test[5]=&gEfiDiskIo2ProtocolGuid;
                 Print(L"sizeof(test[]): %d\n",sizeof(test));
                 Print(L"gEfiPartitionInfoProtocolGuid: %g\n", test[0]);
-                Print(L"gEfiBlockIoProtocolGuid: %g\n", &test[1]);
+                Print(L"gEfiBlockIoProtocolGuid: %g\n", test[1]);
                 EFI_GUID *test1 = (EFI_GUID *)test;
                 Print(L"sizeof(test1[]): %d\n",sizeof(test1));
                 Print(L"gEfiDevicePathProtocolGuid: %g\n", test1[2]);
-                Print(L"gEfiBlockIo2ProtocolGuid: %g\n", &test1[3]);
+                Print(L"gEfiBlockIo2ProtocolGuid: %g\n", test1[3]);
                 EFI_GUID **test2 = (EFI_GUID **)&test1;
                 Print(L"sizeof(test2[]): %d\n",sizeof(test2));
                 Print(L"gEfiDiskIoProtocolGuid: %g\n", (*test2)[4]);
