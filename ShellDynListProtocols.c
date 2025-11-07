@@ -66,8 +66,22 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
         DevicePath = DevicePathFromHandle(HandleBuffer[HandleIndex]);
         if (!(DevicePath == NULL))
         {
-            StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
-            Print(L"DevicePath: %s\n", StrPath);
+            ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID));
+            if (!ProtocolBuffer)
+            {
+                Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
+                return EFI_OUT_OF_RESOURCES;
+            }
+            /**
+             * @var		mixed	*ProtocolBuffer
+             *//**
+             * @var		mixed	*InputProtocolBuffer
+             *//**
+             * @var		*	InputProtocolCount)
+             */
+            ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID) * InputProtocolCount);
+            CopyMem(ProtocolBuffer, InputProtocolBuffer, sizeof(EFI_GUID) * InputProtocolCount);
+            ProtocolCount = InputProtocolCount;
         }
         else
         {
