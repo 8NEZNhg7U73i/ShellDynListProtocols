@@ -35,13 +35,6 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     UINTN OpenInfoCount;
     UINTN OpenInfoIndex;
 
-    // 1st get list of all handles
-    Status = gBS->LocateHandleBuffer(
-        AllHandles,
-        NULL,
-        NULL,
-        &HandleCount,
-        &HandleBuffer);
     if (InputHandleBuffer)
     {
         DEBUG((EFI_D_ERROR, "LocateHandleBuffer failed %r\n", Status));
