@@ -212,7 +212,7 @@ EFIDynListProtocolsEntryPoint(
         else
         {
             EFIDynCmdProtocolLpHandler((EFI_HANDLE *)Handle, NULL, ParamCount - 1, 0);
-            Print(L"arg [%d] is vaild hex text, %08X\n", ParamCount, Handle[ParamCount - 1]);
+            Print(L"arg [%d] is vaild hex text, %08X\n", ParamCount, Handle[ParamCount - 2]);
         }
     }
     FreePool(ParamInt);
