@@ -116,11 +116,9 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                 }
                 for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
                 {
-                    //Print(L"%p is the handle\n", HandleBuffer[HandleIndex]);
-                    //Print(L"%g is the protocol GUID\n", ProtocolBuffer[ProtocolIndex]);
-                    if (0 == OpenInfoIndex)
+                    if (OpenInfoIndex == 0)
                     {
-                    Print(L"                                                 Agent: 0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
+                        Print(L"                                                 Agent: 0X%08X , 0X%08X , 0X%02X, %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
                     }
                     else
                     {
