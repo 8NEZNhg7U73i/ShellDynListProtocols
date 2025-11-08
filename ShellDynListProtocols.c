@@ -107,22 +107,22 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                     {
                         Print(L"DevicePath is NULL\n");
                     }
-                    Print(L"|  Handle  |           Protocol GUID            |  Agent   |Controller|Attr|OpenCount|\n");
-                    Print(L" 0X%08X %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
+                    Print(L"  Handle  |           Protocol GUID            |  Agent   |Controller|Attr|OpenCount\n");
+                    Print(L"0X%08X %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
                 }
                 else
                 {
-                    Print(L"            %g\n", ProtocolBuffer[ProtocolIndex]);
+                    Print(L"           %g\n", ProtocolBuffer[ProtocolIndex]);
                 }
                 for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
                 {
                     if (OpenInfoIndex == 0)
                     {
-                        Print(L"                                                 0X%08X 0X%08X 0X%02X     %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
+                        Print(L"                                                0X%08X 0X%08X 0X%02X     %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
                     }
                     else
                     {
-                    Print(L"                                                 0X%08X 0X%08X 0X%02X     %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
+                    Print(L"                                                0X%08X 0X%08X 0X%02X     %d \n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
                     }
                 }
             }
