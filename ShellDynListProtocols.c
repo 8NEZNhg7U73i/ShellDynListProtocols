@@ -102,7 +102,6 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                         StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
                         Print(L"DevicePath: %s\n", StrPath);
                         FreePool(StrPath);
-                        FreePool(DevicePath);
                     }
                     else
                     {
