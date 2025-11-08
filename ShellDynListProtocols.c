@@ -85,7 +85,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                 &ProtocolCount);
             if (EFI_ERROR(Status))
             {
-                Print(L"ProtocolsPerHandle failed on handle #%d = 0X%x: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status);
+                Print(L"ProtocolsPerHandle failed on handle #%d [0X%08X]: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status);
                 ProtocolCount=0;
             }
         }
