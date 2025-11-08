@@ -126,6 +126,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                         Print(L"                                                0X%08X 0X%08X 0X%02X %d\n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
                     }
                 }
+                FreePool(OpenInfo);
             }
             else
             {
@@ -134,7 +135,6 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
         }
         Print(L"\n");
     }
-    gBS->FreePool(StrPath);
     gBS->FreePool(OpenInfo);
     gBS->FreePool(ProtocolBuffer);
     gBS->FreePool(HandleBuffer);
