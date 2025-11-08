@@ -24,10 +24,10 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
 {
     EFI_STATUS Status;
     UINTN HandleCount;
-    EFI_HANDLE * HandleBuffer;
+    EFI_HANDLE *HandleBuffer;
     UINTN HandleIndex;
     UINTN ProtocolCount;
-    EFI_GUID ** ProtocolBuffer;
+    EFI_GUID **ProtocolBuffer;
     UINTN ProtocolIndex;
     EFI_DEVICE_PATH *DevicePath;
     CHAR16 *StrPath;
@@ -86,7 +86,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
             if (EFI_ERROR(Status))
             {
                 Print(L"ProtocolsPerHandle failed on handle #%d [0X%08X]: %r\n", HandleIndex, HandleBuffer[HandleIndex], Status);
-                ProtocolCount=0;
+                ProtocolCount = 0;
             }
         }
 
@@ -122,7 +122,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                     }
                     else
                     {
-                    Print(L"                                                0X%08X 0X%08X 0X%02X %d\n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
+                        Print(L"                                                0X%08X 0X%08X 0X%02X %d\n", OpenInfo[OpenInfoIndex].AgentHandle, OpenInfo[OpenInfoIndex].ControllerHandle, OpenInfo[OpenInfoIndex].Attributes, OpenInfo[OpenInfoIndex].OpenCount);
                     }
                 }
             }
@@ -141,7 +141,6 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     return EFI_SUCCESS;
 }
 
-
 /**
   Main entry point of the dynamic EFI extension driver.
 
@@ -157,16 +156,15 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
 **/
 EFI_STATUS
 EFIAPI
-EFIDynListProtocolsEntryPoint (
-  IN EFI_HANDLE        ImageHandle,
-  IN EFI_SYSTEM_TABLE  *SystemTable
-  )
+EFIDynListProtocolsEntryPoint(
+    IN EFI_HANDLE ImageHandle,
+    IN EFI_SYSTEM_TABLE *SystemTable)
 {
-    EFI_STATUS  Status;
+    EFI_STATUS Status;
     EFI_SHELL_PARAMETERS_PROTOCOL *ShellParameters;
     UINTN ParamCount;
     UINTN ParamIndex;
-    UINT64 *ParamInt=AllocateZeroPool(sizeof(UINT64));
+    UINT64 *ParamInt = AllocateZeroPool(sizeof(UINT64));
     EFI_HANDLE *Handle;
 
     Status = ShellInitialize();
@@ -201,7 +199,7 @@ EFIDynListProtocolsEntryPoint (
                 Print(L"arg [%d] is vaild hex text, %08X\n", ParamIndex, *ParamInt);
                 Handle[ParamIndex - 1] = *(EFI_HANDLE *)ParamInt;
             }
-            else 
+            else
             {
                 Print(L"arg [%d] is not vaild hex text, %r\n", ParamIndex, Status);
             }
