@@ -112,7 +112,7 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                 }
                 else
                 {
-                    Print(L"            %g\n", ProtocolBuffer[ProtocolIndex]);
+                    Print(L"              %g\n", ProtocolBuffer[ProtocolIndex]);
                 }
                 for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
                 {
