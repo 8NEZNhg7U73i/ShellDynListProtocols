@@ -224,7 +224,7 @@ EFIDynListProtocolsEntryPoint (
         {
             EFIDynCmdProtocolLpHandler((EFI_HANDLE *)Handle, NULL, ParamCount - 1, 0);
         }
-
+    }
     FreePool(ParamInt);
     return EFI_SUCCESS;
 }
