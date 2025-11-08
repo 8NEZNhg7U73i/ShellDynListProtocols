@@ -108,11 +108,11 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                         Print(L"DevicePath is NULL\n");
                     }
                     Print(L"| Handle |                      | Agent |     | Controller |     | Attributes|         | OpenCount |  \n");
-                    Print(L"Handle 0X%08X: %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
+                    Print(L"0X%08X: %g\n", HandleBuffer[HandleIndex], ProtocolBuffer[ProtocolIndex]);
                 }
                 else
                 {
-                    Print(L"                   %g\n", ProtocolBuffer[ProtocolIndex]);
+                    Print(L"            %g\n", ProtocolBuffer[ProtocolIndex]);
                 }
                 for (OpenInfoIndex = 0; OpenInfoIndex < OpenInfoCount; OpenInfoIndex++)
                 {
