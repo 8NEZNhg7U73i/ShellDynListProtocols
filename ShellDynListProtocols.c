@@ -67,13 +67,12 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
     {
         if (InputProtocolBuffer && InputProtocolCount > 0)
         {
-            ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID));
+            ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID) * InputProtocolCount);
             if (!ProtocolBuffer)
             {
                 Print(L"Can not allocate memory, %r\n", EFI_OUT_OF_RESOURCES);
                 return EFI_OUT_OF_RESOURCES;
             }
-            ProtocolBuffer = AllocateZeroPool(sizeof(EFI_GUID) * InputProtocolCount);
             CopyMem(ProtocolBuffer, InputProtocolBuffer, sizeof(EFI_GUID) * InputProtocolCount);
             ProtocolCount = InputProtocolCount;
         }
@@ -102,6 +101,8 @@ EFIDynCmdProtocolLpHandler(IN EFI_HANDLE *InputHandleBuffer OPTIONAL, IN EFI_GUI
                     {
                         StrPath = ConvertDevicePathToText(DevicePath, FALSE, FALSE);
                         Print(L"DevicePath: %s\n", StrPath);
+                        Freepool(StrPath);
+                        FreePool(DevicePath);
                     }
                     else
                     {
